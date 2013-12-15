@@ -213,6 +213,7 @@ Gallery.prototype.operateEmoticonClick = function(smile, wrapper, callback) {
 		var RegExEmosHash = /[0-9a-f]{32}/g;
 		//var brackets = text.match(RegExBrackets);
 		var keywords = [];
+		var match;
 		while(match = RegExBrackets.exec(text)){
 			keywords.push(match[1]);
 		}

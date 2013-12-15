@@ -182,7 +182,7 @@ GalleryCandidate.prototype.show = function(parent){
 
 	var self = this;
 	var parent = $(parent);
-	var input = self.gallery.lastInputFocused;
+	var input = self.gallery.lastInputFocused; if(! input ) return false; // not ready
 	var value = input.value.substr(0, input.selectionStart).replace(/^\s*/, '')/*.replace(/\s*$/, '')*/;
 
 	self.candidateDiv = parent.find(".candidate").length ? parent.find(".candidate") : $("<div class='candidate' />")
