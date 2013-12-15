@@ -62,8 +62,6 @@ Gallery.prototype.init = function() {
 	})
 }
 
-
-
 Gallery.prototype.getPanel = function(){
 
 	var self = this;
@@ -175,7 +173,11 @@ Gallery.prototype.operateEmoticonClick = function(smile, wrapper, callback) {
 
 	this.getRemovableEmoticons(function(removable){
 		wrapper.addClass('uploading');
-		removable = _.reject(removable, function(e){ return _.findWhere(self.emotionUsed, {keyword: e.keyword}); });
+
+		removable = _.reject(removable, function(e){ 
+			return _.contains(self.emotionUsed, e.keyword); 
+		});
+
 		if(removable.length + self.emotionUsed.length > 50){
 			var toRemove = removable.pop();
 			self.storage.online.removeEmotion(toRemove.url, function(){
@@ -199,8 +201,12 @@ Gallery.prototype.operateEmoticonClick = function(smile, wrapper, callback) {
 		var RegExBrackets = /\[([^\]]+)\]/g ;
 		var RegExEmosUrl = /http:\/\/emos\.plurk\.com\/[0-9a-f]{32}_w\d+_h\d+\.\w+/g;
 		var RegExEmosHash = /[0-9a-f]{32}/g;
-		var brackets = text.match(RegExBrackets);
-		return brackets || [];
+		//var brackets = text.match(RegExBrackets);
+		var keywords = [];
+		while(match = RegExBrackets.exec(text)){
+			keywords.push(match[1]);
+		}
+		return keywords;
 	}
 }
 Gallery.prototype.useEmoticon = function(keyword, backward){
