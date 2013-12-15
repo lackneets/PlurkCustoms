@@ -17,6 +17,9 @@ NotificationSoundPlugin.prototype = Object.create(Plugin.prototype);
 NotificationSoundPlugin.prototype.parent = Plugin;
 NotificationSoundPlugin.prototype.constructor = NotificationSoundPlugin;
 
+NotificationSoundPlugin.prototype.className = 'NotificationSoundPlugin';
+NotificationSoundPlugin.prototype.title = '通知音效localPlugin';
+
 NotificationSoundPlugin.prototype.timer = null;
 NotificationSoundPlugin.prototype.shortcutSwitch = null;
 NotificationSoundPlugin.prototype.start = function(){
