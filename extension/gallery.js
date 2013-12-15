@@ -79,6 +79,11 @@ Gallery.prototype.getPanel = function(){
 			text: 'Loading...'
 		}).appendTo(panel).show();
 
+		//RPlurkSmileys 會把它刪掉
+		if(loading.parent().length == 0){
+			loading.appendTo(panel).show();
+		}
+
 		$('#emoticons_tabs li[id^=emo_]').click(function(){
 			$('#emoticon_selecter #emoticon_holder_super_parent').show();
 			$('#emoticons_show').hide();
@@ -131,6 +136,11 @@ Gallery.prototype.registerTab = function(className, opener, label){
 				e.preventDefault();
 				wrapper.siblings().hide();
 				self.currentClassName = className;
+
+				//RPlurkSmileys 會把它刪掉
+				if(wrapper.parent().length == 0){
+					wrapper.appendTo('#emoticons_show');
+				}
 				
 				//wrapper.show();
 				//self.getPanel();

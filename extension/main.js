@@ -82,17 +82,22 @@ var gallery ;
 		shortcut(gallery);
 	});
 
+	//RPlurkSmiley 版面
 	$('li.emoticon_selecter#karma_0').livequery(function(){
 		console.log($('li.emoticon_selecter'));
 		$('<div/>', {
 			css:{
 				'margin': '3px 0px',
-				'clear' :'both'
+				'clear' :'both',
+				'overflow' : 'auto'
 			},
 			html: $('li.emoticon_selecter')
 		}).appendTo('#emoticons_tabs');
-		
-	})
+		$('#emoticons_tabs > ul, #emoticons_tabs > div')
+			.click(function(){return false;})
+		$('.emoticon_selecter').mousedown(function(){return false;})
+	});
+
 
 	
 	Function.prototype.clone = function() {
