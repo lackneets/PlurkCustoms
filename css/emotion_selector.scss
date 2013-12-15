@@ -1,0 +1,339 @@
+﻿/*解決噗浪遮蓋問題 2010/01/20*/
+.plurk[id^="p"]:hover {z-index: 10000;}
+
+/*移除原始時間顯示標籤*/
+#time_show {display: none !important;}
+
+@-webkit-keyframes fadeIn{
+	0%   { opacity: 0; }
+	100% { opacity: 1; }
+}
+.input_holder {
+	position: relative;
+}
+
+/*.input_holder textarea{
+	width:100% !important;
+ }*/
+ 
+img[src*='emos.plurk.com'].new{
+	-webkit-transition: 0.2s linear;
+	outline: 1px dashed #ccc;
+}
+.emoticon_my.new {
+	-webkit-transition: 0.2s linear;
+	position:relative !important;
+	z-index:9000 !important;
+	/*-webkit-box-shadow: 0 0 1px 1px #4A7DE4 !important;*/
+	outline: 1px dashed #ccc;
+}
+img[src*='emos.plurk.com'].new:hover,
+.emoticon_my.new:hover {
+	z-index:9999 !important;
+	-webkit-box-shadow: 0 0 2px 3px #CF5A00 !important;
+}
+
+span.emoticon_my_wrapper{}
+span.emoticon_my_wrapper:hover img.emoticon_my{cursor:pointer;filter:none!important;opacity:1 !important;}
+span.emoticon_my_wrapper:after{content:""!important; right:0;position:absolute;top:0}
+#timeline-add-emo-icon{display:none !important;} 
+.emo-tiny-adder{display:none !important;} 
+
+.candidate div{ 
+	vertical-align:middle; 
+	-webkit-transition: 0.2s linear;
+}
+.candidate{
+	-webkit-transition: 0.2s linear;
+	margin-top:5px;
+	background: white;
+	width:100%;
+	min-height: 66px;
+	max-height: 135px; overflow-y:scroll;
+	-webkit-animation-name: fadeIn;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-duration: 0.5s;
+}
+
+.candidate {
+	div{
+		margin: 2px;
+		margin-top:16px;
+		width: 48px; height: 48px;
+		margin-bottom: 5px;
+		border-bottom: 4px solid transparent;
+		a{
+			//background-color: #FFF;
+			vertical-align: middle;
+			line-height: 48px;
+			display: inline-block;
+			width: 100%;
+			height: 100%;
+			&.uploading{
+				img{display: none;}
+				background-image: url(chrome-extension://__MSG_@@extension_id__/images/loading-orange.gif);
+				background-position: center;
+				background-repeat: no-repeat;
+			}
+		}	
+		span{
+			width: 100%;
+		}
+		&:hover {
+			border-bottom: 4px solid #d55b1a;;
+		}	
+	}
+
+}
+
+	
+body{
+	#emotiland {
+		z-index: 12020;
+	}
+	#emoticon_selecter {
+		width: 480px !important;
+		min-width: 480px !important;
+		z-index: 12000 ;
+		a:hover img { border:none !important; }
+		#emoticons_show {
+			position: relative;
+			height: 280px !important;
+			width: 100% !important;
+			padding: 0px !important;
+			_overflow-x: hidden !important;
+			z-index: 12000 !important;
+			color: #555;
+			overflow-y:auto;
+
+			.tabWrapper{
+				//height: 280px;
+				overflow: hidden;;
+				
+			}
+
+			.loading{
+				position: absolute;
+				top:0; bottom: 0;
+				width: 100%;
+				padding: 80px 0;
+				z-index: 999;
+				text-indent: -99999em;
+				text-align:center; 
+				background-position: center;
+				background-image: url(chrome-extension://__MSG_@@extension_id__/images/loading-suqare-grey.gif); 
+				background-repeat: no-repeat;
+				background-size: 80px;
+			}
+			table.plurkCustoms.gallery{
+				margin: 8px;
+				width: 460px ;
+				tr{
+					display: inline;
+					td {
+						-moz-transition: 0.1s linear;
+						-webkit-transition: 0.1s linear;
+						display: inline-block !important;
+						height: 55px;
+						line-height: 55px;
+						overflow: hidden;
+						white-space: nowrap;
+						width: 12.5%;
+						width:55px;height:55px;
+						&.highlighted{
+							opacity: 1;
+							position:relative !important;
+							z-index:9999 !important;
+							-webkit-box-shadow: 0 0 2px 3px #4A7DE4!important;
+							-moz-box-shadow: 0 0 2px 3px #4A7DE4!important;
+						}
+						a{
+							display: inline-block;
+							width: 100%;
+							height: 100%;
+							&.uploading{
+								img{display: none;}
+								background-image: url(chrome-extension://__MSG_@@extension_id__/images/loading-orange.gif);
+								background-position: center;
+								background-repeat: no-repeat;
+							}
+						}
+						img {
+							vertical-align: middle;
+							max-width: 48px;
+							max-height: 48px;
+						}
+					}	//td				
+				} //tr
+				&:hover{
+					td:hover {
+						opacity: 1;
+						position:relative !important;
+						z-index:9999 !important;
+						-webkit-box-shadow: 0 0 2px 3px #E35D1C!important;
+						-moz-box-shadow: 0 0 2px 3px #E35D1C!important;
+					}
+				}
+			}
+
+		}
+
+		&.large {
+			width: 100% !important;
+			height: 305px!important;
+			position: fixed !important;
+			top: auto !important;
+			bottom: 0px !important;
+			left: 0px !important;
+			#emoticons_show {
+				height: 270px !important;
+				overflow: hidden;
+				table.plurkCustoms.gallery{	
+					width: 100%;
+					tr {
+						display: inline !important;
+					}
+					td {
+						display: inline-block !important;
+						width: 58px;
+						height: 58px;
+						line-height: 58px;
+						white-space: nowrap;
+						img {
+							vertical-align: middle;
+						}
+					}
+					td:after {
+						content: ".";
+						font-size: 1px;
+						margin-left: -1px;
+						opacity: 0;
+					}					
+				}
+
+			}
+			table:not(.protected) {
+				width: 100% !important;
+				height: auto !important;
+				display: block !important;
+			}
+		}
+	}
+}
+
+
+
+#emo-manager {
+  .emo-public-pool {
+	margin-left: 20px;
+	opacity: 0.2;
+	-webkit-transition: opacity 0.2s linear;
+  }
+  &:hover .emo-public-pool {
+	opacity: 1;
+  }
+}
+
+.emo-wrapper {
+  overflow: hidden;
+  img {
+	width: 26px;
+	height: 26px;
+  }
+}
+
+
+/*Scrollbar*/
+
+::-webkit-scrollbar{
+	width:1.2em;
+	height:0.8em;
+	background-color:#fff;
+}
+::-webkit-scrollbar:hover{
+	background-color:#eee;
+}
+::-webkit-scrollbar-thumb{
+	min-height:0.8em;
+	min-width:1.2em;
+	-webkit-border-radius:4px;
+	background-color: #ddd;
+}
+::-webkit-scrollbar-thumb:hover{
+	background-color: #bbb;
+}
+::-webkit-scrollbar-thumb:active{
+	background-color:#E35D1C;
+}
+
+.icon_export, .icon_import {
+  width: 48px;
+  height: 48px;
+  display: inline-block;
+  background-size: 48px;
+  background-repeat: no-repeat;
+  background-image: url(chrome-extension://__MSG_@@extension_id__/images/downfile.png);
+  cursor: pointer;
+}
+
+.emoticons_my {
+	padding-top: 30px;
+	.protect {
+		padding-left: 140px;
+		background-size: 150px;
+		background-repeat: no-repeat;
+		background-position: left center;
+		background-image: url(chrome-extension://__MSG_@@extension_id__/images/protect.png);
+	}
+}
+
+.plurk.muted {
+  &:not(.display) {
+	opacity: 0.5;
+	-webkit-transition: opacity 0.3s linear;
+  }
+  &:hover, &.plurk_box {
+	opacity: 1;
+  }
+}
+
+.emoticon_my {
+  margin: 0px -2px;
+}
+
+/*Added 2012.01.04 加寬回應區塊*/
+
+.mini_form {
+  width: inherit;
+  min-width: 300px;
+  max-width: 600px;
+  overflow: visible;
+}
+
+#input_small {
+  min-height: 40px;
+  width: 95%;
+  min-width: 95%;
+  max-width: 95%;
+}
+
+.mini_form {
+  .input_holder {
+	display: block;
+  }
+  tr {
+	display: block;
+	padding: 0;
+	margin: 0;
+  }
+  td {
+	display: block;
+	margin: 6px 5px;
+  }
+}
+
+/*廣告 2013.01.10*/
+
+#resp_banner_ads {
+  display: none !important;
+}

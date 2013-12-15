@@ -1,0 +1,256 @@
+.simpleoverlay {
+  background: url(chrome-extension://__MSG_@@extension_id__/images/tweed.png);
+  opacity: 0.5;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9999; }
+
+.plurk:not(:hover):not(.plurk_box) .tr_info {
+  display: none !important; }
+
+.plurk .tr_info a {
+  margin-right: 8px; }
+
+.plurk .tr_info a.posted {
+  display: inline-block;
+  background: url(chrome-extension://__MSG_@@extension_id__/images/time-8-16.png) no-repeat 0px 1px;
+  background-size: 12px;
+  padding-left: 16px; }
+
+.plurk .tr_info a.likes {
+  display: inline-block;
+  background: url(chrome-extension://__MSG_@@extension_id__/images/facebook-like-16.png) no-repeat 0px 1px;
+  background-size: 12px;
+  padding-left: 16px; }
+
+.plurk .tr_info a.replurk {
+  display: inline-block;
+  background: url(chrome-extension://__MSG_@@extension_id__/images/sharethis-3-16.png) no-repeat 0px 1px;
+  background-size: 12px;
+  padding-left: 16px; }
+
+#main_poster .icons_holder .addEmoticons {
+  background: url(chrome-extension://__MSG_@@extension_id__/images/plus-4-32.png) no-repeat center center;
+  background-size: 120%;
+  cursor: pointer;
+  display: inline-block;
+  margin: 5px 6px 0 0;
+  width: 26px;
+  height: 26px; }
+
+.mini_form .icons_holder .shortcut {
+  background-size: 19px !important;
+  cursor: pointer;
+  display: inline-block;
+  margin: 2px 6px 0 0;
+  width: 19px;
+  height: 19px; }
+
+#main_poster .icons_holder .shortcut {
+  background-size: 120% !important;
+  display: inline-block;
+  cursor: pointer;
+  margin: 5px 6px 0 0;
+  width: 26px;
+  height: 26px; }
+
+#emoticon_holder_super_parent #emoticon_pages_parent {
+  margin: 5px 44px; }
+
+#main_poster .addEmoticons, .mini_form .addEmoticons {
+  background: url(chrome-extension://__MSG_@@extension_id__/images/plus-4-32.png) no-repeat center center; }
+#main_poster .busy, .mini_form .busy {
+  background: url(chrome-extension://__MSG_@@extension_id__/images/x-mark-3-32.png) no-repeat center center; }
+#main_poster .gallery, .mini_form .gallery {
+  background: url(chrome-extension://__MSG_@@extension_id__/images/posterous-spaces-3-32.png) no-repeat center center; }
+#main_poster .downloadEmoticons, .mini_form .downloadEmoticons {
+  background: url(chrome-extension://__MSG_@@extension_id__/images/arrow-242-32.png) no-repeat center center; }
+#main_poster .setting, .mini_form .setting {
+  background: url(chrome-extension://__MSG_@@extension_id__/images/gear-2-32.png) no-repeat center center; }
+
+#emoticons_tabs ul li {
+  cursor: pointer; }
+  #emoticons_tabs ul li.gallery.local a {
+    background: url(chrome-extension://__MSG_@@extension_id__/images/posterous-spaces-3-32.png) no-repeat center center; }
+  #emoticons_tabs ul li.gallery.online a {
+    background: url(chrome-extension://__MSG_@@extension_id__/images/plurk_emo_my.png) no-repeat center center; }
+  #emoticons_tabs ul li.gallery.default a {
+    background: url(chrome-extension://__MSG_@@extension_id__/images/plurk_emo_extra.png) no-repeat center center; }
+  #emoticons_tabs ul li.gallery.favorite a {
+    background: url(chrome-extension://__MSG_@@extension_id__/images/star-8-32.png) no-repeat center center; }
+  #emoticons_tabs ul li.gallery.seen a {
+    background: url(chrome-extension://__MSG_@@extension_id__/images/eye-3-32.png) no-repeat center center; }
+  #emoticons_tabs ul li.tools a {
+    background: url(chrome-extension://__MSG_@@extension_id__/images/wrench-4-32.png) no-repeat center center; }
+  #emoticons_tabs ul li.backup a {
+    background: url(chrome-extension://__MSG_@@extension_id__/images/data-backup-32.png) no-repeat center center; }
+  #emoticons_tabs ul li.setting a {
+    background: url(chrome-extension://__MSG_@@extension_id__/images/gear-2-32.png) no-repeat center center; }
+  #emoticons_tabs ul li a {
+    background-size: 20px !important;
+    display: inline-block;
+    min-width: 20px;
+    min-height: 20px; }
+
+#emoticon_selecter {
+  padding-bottom: 0px; }
+  #emoticon_selecter .down_arrow {
+    display: none; }
+  #emoticon_selecter .comingsoon {
+    background: url(chrome-extension://__MSG_@@extension_id__/images/soonsoon.jpeg) no-repeat center center;
+    background-size: 160px;
+    height: 160px;
+    margin: 40px 0; }
+  #emoticon_selecter .tabWrapper {
+    position: relative; }
+    #emoticon_selecter .tabWrapper div {
+      margin: 0 auto; }
+    #emoticon_selecter .tabWrapper.gallery {
+      height: 280px; }
+    #emoticon_selecter .tabWrapper.backup .dropZone {
+      border: 3px dashed gray;
+      margin: 10px;
+      padding: 10px;
+      position: relative; }
+    #emoticon_selecter .tabWrapper.backup a.icon_export {
+      display: block;
+      width: auto;
+      margin: 8px;
+      padding-left: 55px;
+      line-height: 48px; }
+    #emoticon_selecter .tabWrapper.backup select.method {
+      position: absolute;
+      right: 10px;
+      top: 10px; }
+    #emoticon_selecter .tabWrapper.setting {
+      width: 440px;
+      margin: 20px auto; }
+      #emoticon_selecter .tabWrapper.setting div.item.row {
+        clear: both;
+        padding: 10px 0px;
+        color: #555;
+        font-weight: bold;
+        border-bottom: 1px dashed #EFEFEF; }
+        #emoticon_selecter .tabWrapper.setting div.item.row .onoffswitch {
+          float: right; }
+    #emoticon_selecter .tabWrapper.tools {
+      height: 280px; }
+      #emoticon_selecter .tabWrapper.tools div.controls {
+        width: 440px;
+        height: 220px;
+        margin: 20px auto; }
+        #emoticon_selecter .tabWrapper.tools div.controls div.item {
+          cursor: pointer;
+          -webkit-filter: drop-shadow(0px 0px 2px rgba(0, 0, 0, 0.5));
+          box-shadow: 1px 1px 1px #555;
+          display: inline-block;
+          margin: 10px 10px;
+          outline: 1px solid #ccc;
+          background-position: center center;
+          background-size: 70px;
+          background-repeat: no-repeat;
+          width: 90px;
+          height: 90px; }
+          #emoticon_selecter .tabWrapper.tools div.controls div.item.audio {
+            background-image: url(chrome-extension://__MSG_@@extension_id__/images/note-128.png); }
+          #emoticon_selecter .tabWrapper.tools div.controls div.item.pack {
+            background-image: url(chrome-extension://__MSG_@@extension_id__/images/package-128.png); }
+          #emoticon_selecter .tabWrapper.tools div.controls div.item.sync {
+            background-image: url(chrome-extension://__MSG_@@extension_id__/images/recurring-appointment-128.png); }
+          #emoticon_selecter .tabWrapper.tools div.controls div.item.backup {
+            background-image: url(chrome-extension://__MSG_@@extension_id__/images/cloud-128.png); }
+          #emoticon_selecter .tabWrapper.tools div.controls div.item:not(.none):hover {
+            box-shadow: -1px -1px 1px #555;
+            position: relative;
+            top: 1px;
+            left: 1px; }
+          #emoticon_selecter .tabWrapper.tools div.controls div.item.none {
+            cursor: default;
+            -webkit-filter: none;
+            box-shadow: none;
+            background-color: #ccc;
+            background-image: url(chrome-extension://__MSG_@@extension_id__/images/private-128.png); }
+          #emoticon_selecter .tabWrapper.tools div.controls div.item.author {
+            background-image: url(chrome-extension://__MSG_@@extension_id__/images/avatar.png);
+            background-size: 90px; }
+  #emoticon_selecter div.filterWrapper {
+    position: absolute;
+    right: 0px;
+    left: 0px;
+    top: 0px;
+    padding: 3px 8px; }
+  #emoticon_selecter div.tableWrapper {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    position: absolute;
+    top: 28px;
+    right: 0px;
+    left: 0px;
+    bottom: 0px; }
+    #emoticon_selecter div.tableWrapper div.help {
+      padding: 0 8px;
+      color: #ccc; }
+    #emoticon_selecter div.tableWrapper a {
+      position: relative; }
+      #emoticon_selecter div.tableWrapper a img {
+        max-width: 50px;
+        max-height: 50px; }
+  #emoticon_selecter div.footer {
+    margin: 3px 15px;
+    color: #777;
+    font-size: 12px;
+    cursor: default; }
+
+.plurk.backup .manager .action {
+  display: none; }
+
+.text_holder .backup {
+  display: block;
+  background-color: #CCFFFF;
+  border-radius: 5px;
+  padding: 5px; }
+  .text_holder .backup .action {
+    display: inline-block;
+    height: 18px;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    background-position: 0px -1px;
+    padding-left: 18px;
+    margin: 3px; }
+    .text_holder .backup .action.merge {
+      background-image: url(chrome-extension://__MSG_@@extension_id__/images/arrow-42-16.png); }
+    .text_holder .backup .action.replace {
+      background-image: url(chrome-extension://__MSG_@@extension_id__/images/undo-5-16.png); }
+    .text_holder .backup .action.download {
+      background-image: url(chrome-extension://__MSG_@@extension_id__/images/arrow-242-16.png); }
+    .text_holder .backup .action:hover {
+      color: #CC3300; }
+
+#filter_tab li.switch.notification {
+  cursor: pointer; }
+  #filter_tab li.switch.notification a {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    background-image: url(chrome-extension://__MSG_@@extension_id__/images/sound_on.png);
+    background-position: center;
+    background-repeat: no-repeat; }
+  #filter_tab li.switch.notification.off a {
+    background-image: url(chrome-extension://__MSG_@@extension_id__/images/sound_off.png); }
+
+#emotiland .panel#uploadPanel #emo-add-field2 {
+  color: #FFF;
+  width: 330px;
+  height: 305px;
+  text-indent: -99999em;
+  overflow: hidden;
+  background-position: center;
+  background-image: url(chrome-extension://__MSG_@@extension_id__/images/loading-suqare.gif);
+  background-repeat: no-repeat; }
+  #emotiland .panel#uploadPanel #emo-add-field2 * {
+    opacity: 0;
+    position: relative;
+    top: -4000px; }

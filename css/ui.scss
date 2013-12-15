@@ -1,0 +1,312 @@
+
+.simpleoverlay{
+background: url(chrome-extension://__MSG_@@extension_id__/images/tweed.png);
+opacity: 0.5;
+position:fixed;
+top:0; right:0; bottom:0; left:0;
+z-index : 9999;
+}
+.plurk:not(:hover):not(.plurk_box) .tr_info{display:none !important;}
+.plurk .tr_info a{
+margin-right: 8px;
+}
+.plurk .tr_info a.posted{
+display: inline-block;
+background: url(chrome-extension://__MSG_@@extension_id__/images/time-8-16.png) no-repeat 0px 1px;
+background-size: 12px;
+padding-left: 16px; 
+}
+.plurk .tr_info a.likes{
+display: inline-block;
+background: url(chrome-extension://__MSG_@@extension_id__/images/facebook-like-16.png) no-repeat 0px 1px;
+background-size: 12px;
+padding-left: 16px; 
+}
+.plurk .tr_info a.replurk{
+display: inline-block;
+background: url(chrome-extension://__MSG_@@extension_id__/images/sharethis-3-16.png) no-repeat 0px 1px;
+background-size: 12px;
+padding-left: 16px; 
+}
+
+#main_poster .icons_holder .addEmoticons {
+background: url(chrome-extension://__MSG_@@extension_id__/images/plus-4-32.png) no-repeat center center;
+background-size: 120%;
+cursor: pointer;
+display: inline-block;
+margin:5px 6px 0 0;
+width: 26px; height: 26px;
+}
+
+%smallIcon{
+	background-size: 19px !important;
+	cursor: pointer;
+	display: inline-block;
+	margin:2px 6px 0 0;
+	width: 19px; height: 19px;
+}
+
+%largeIcon{
+	background-size: 120% !important;
+	display: inline-block;
+	cursor: pointer;
+	margin:5px 6px 0 0;
+	width: 26px; height: 26px;
+}
+#emoticon_holder_super_parent{
+	#emoticon_pages_parent{
+		margin: 5px 44px;
+	}
+}
+
+
+
+#main_poster , .mini_form {
+
+	.addEmoticons{
+		background: url(chrome-extension://__MSG_@@extension_id__/images/plus-4-32.png) no-repeat center center;
+	}
+	.busy{
+		background: url(chrome-extension://__MSG_@@extension_id__/images/x-mark-3-32.png) no-repeat center center;
+	}
+	.gallery{
+		background: url(chrome-extension://__MSG_@@extension_id__/images/posterous-spaces-3-32.png) no-repeat center center;
+	}
+	.downloadEmoticons{
+		background: url(chrome-extension://__MSG_@@extension_id__/images/arrow-242-32.png) no-repeat center center;
+	}
+	.setting{
+		background: url(chrome-extension://__MSG_@@extension_id__/images/gear-2-32.png) no-repeat center center;
+	}
+}
+
+.mini_form .icons_holder{
+	.shortcut{
+		@extend %smallIcon;
+	}
+}
+#main_poster .icons_holder{
+	.shortcut{
+		@extend %largeIcon;
+	}
+}
+
+#emoticons_tabs{
+	ul li {
+		cursor: pointer;
+		&.gallery.local a{
+			background: url(chrome-extension://__MSG_@@extension_id__/images/posterous-spaces-3-32.png) no-repeat center center;
+		}
+		&.gallery.online a{
+			background: url(chrome-extension://__MSG_@@extension_id__/images/plurk_emo_my.png) no-repeat center center;
+		}
+		&.gallery.default a{
+			background: url(chrome-extension://__MSG_@@extension_id__/images/plurk_emo_extra.png) no-repeat center center;
+		}
+		&.gallery.favorite a{
+			background: url(chrome-extension://__MSG_@@extension_id__/images/star-8-32.png) no-repeat center center;
+		}
+		&.gallery.seen a{
+			background: url(chrome-extension://__MSG_@@extension_id__/images/eye-3-32.png) no-repeat center center;
+		}
+
+		&.tools a{
+			background: url(chrome-extension://__MSG_@@extension_id__/images/wrench-4-32.png) no-repeat center center;
+		}
+		&.backup a{
+			background: url(chrome-extension://__MSG_@@extension_id__/images/data-backup-32.png) no-repeat center center;
+		}
+		&.setting a{
+			background: url(chrome-extension://__MSG_@@extension_id__/images/gear-2-32.png) no-repeat center center;
+		}
+		a{
+			background-size: 20px !important;
+			display: inline-block;
+			min-width: 20px; min-height: 20px;
+		}
+	}
+}
+
+#emoticon_selecter{
+	padding-bottom: 0px;
+	.down_arrow{display: none;}
+
+	.comingsoon{
+		background: url(chrome-extension://__MSG_@@extension_id__/images/soonsoon.jpeg) no-repeat center center;
+		background-size: 160px;
+		height: 160px;
+		margin: 40px 0;
+
+	}
+	.tabWrapper{
+		position: relative;
+		//height: 100%;
+		div{margin: 0 auto;}
+		&.gallery{
+			height: 280px;
+		}
+		&.backup{
+			.dropZone{
+				border:3px dashed gray;margin:10px;padding:10px;position:relative;
+			}
+			a.icon_export{
+				display:block;width:auto;margin:8px;padding-left:55px;line-height:48px;
+			}
+			select.method{
+				position:absolute; right:10px; top:10px;
+			}
+		}
+		&.setting{
+			width:440px;
+			margin:20px auto;
+			div.item.row{
+				clear: both;
+				padding: 10px 0px;
+				color: #555;
+				font-weight: bold;
+				border-bottom: 1px dashed #EFEFEF;
+				.onoffswitch{
+					float: right;
+				}
+			}
+		}
+		&.tools{
+			height: 280px;
+			div.controls{
+				width:440px;
+				height: 220px;
+				margin:20px auto;
+				div.item{
+					cursor: pointer;;
+					-webkit-filter: drop-shadow(0px 0px 2px rgba(0,0,0,0.5));
+					box-shadow: 1px 1px 1px #555;
+					display: inline-block;
+					margin:10px 10px;
+					outline: 1px solid #ccc;
+					background-position: center center;
+					background-size: 70px;
+					background-repeat: no-repeat;
+					width: 90px; height: 90px;
+					&.audio{
+						background-image: url(chrome-extension://__MSG_@@extension_id__/images/note-128.png);
+					}
+					&.pack{
+						background-image: url(chrome-extension://__MSG_@@extension_id__/images/package-128.png);
+					}
+					&.sync{
+						background-image: url(chrome-extension://__MSG_@@extension_id__/images/recurring-appointment-128.png);
+					}
+					&.backup{
+						background-image: url(chrome-extension://__MSG_@@extension_id__/images/cloud-128.png);
+					}
+					&:not(.none):hover{
+						box-shadow: -1px -1px 1px #555;
+						position: relative;
+						top:1px; left:1px;
+					}
+					&.none{
+						cursor: default;
+						-webkit-filter: none;
+						box-shadow: none;
+						background-color: #ccc;
+						background-image: url(chrome-extension://__MSG_@@extension_id__/images/private-128.png);
+
+					}
+					&.author{
+						background-image: url(chrome-extension://__MSG_@@extension_id__/images/avatar.png);
+						background-size: 90px;
+					}
+				}
+			}
+
+		}
+	}
+	div.filterWrapper{
+		position:absolute;
+		right:0px;left:0px;top:0px;
+		padding : 3px 8px;
+	}
+	div.tableWrapper{
+		overflow-x:hidden;
+		overflow-y:scroll;
+		position:absolute;
+		top:28px;right:0px;left:0px;bottom:0px;
+		div.help{
+			padding:0 8px; 
+			color:#ccc;
+		}
+		a {
+			position:relative;
+			img{
+				max-width: 50px; 
+				max-height: 50px;
+			}
+		}
+	}
+	div.footer{
+		margin:3px 15px;
+		color:#777;
+		font-size:12px;
+		cursor:default;
+	}
+}
+
+.plurk.backup .manager .action{display:none;}
+.text_holder .backup {
+	display: block;
+	background-color: #CCFFFF;
+	border-radius: 5px;
+	padding: 5px; 
+	.action{
+		display: inline-block;
+		height: 18px;
+		background-repeat: no-repeat;
+		background-size: 16px;
+		background-position: 0px -1px;
+		padding-left: 18px;
+		margin:3px;
+		&.merge{
+			background-image: url(chrome-extension://__MSG_@@extension_id__/images/arrow-42-16.png);
+		}
+		&.replace{
+			background-image: url(chrome-extension://__MSG_@@extension_id__/images/undo-5-16.png);
+		}
+		&.download{
+			background-image: url(chrome-extension://__MSG_@@extension_id__/images/arrow-242-16.png);
+		}
+		&:hover{
+			color: #CC3300;
+		}
+	}
+}
+
+#filter_tab li.switch.notification{
+	cursor: pointer;
+	a{
+		width: 16px; height: 16px;
+		display: inline-block;
+		background-image: url(chrome-extension://__MSG_@@extension_id__/images/sound_on.png);
+		background-position: center;
+		background-repeat: no-repeat;
+	}
+	&.off a{
+		background-image: url(chrome-extension://__MSG_@@extension_id__/images/sound_off.png);
+	}
+
+}
+#emotiland .panel#uploadPanel{
+	#emo-add-field2{
+		color:#FFF;
+		width: 330px; height: 305px;
+		text-indent: -99999em;
+		overflow: hidden;
+		background-position: center;
+		background-image: url(chrome-extension://__MSG_@@extension_id__/images/loading-suqare.gif); 
+		background-repeat: no-repeat;
+		*{
+			opacity: 0;
+			position: relative;
+			top:-4000px;
+		} 
+	}
+}
