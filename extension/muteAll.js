@@ -28,7 +28,7 @@
 	function mutePlurk(plurk_id, mute, callback){
 		var value = mute ? '2' : '0';
 		$.ajax({
-			url: "http://www.plurk.com/TimeLine/setMutePlurk",
+			url: "//www.plurk.com/TimeLine/setMutePlurk",
 			data: {plurk_id: plurk_id, value: value },
 			type: "POST", cache: false,
 			success: function(data){
@@ -60,7 +60,7 @@
 		NProgress.start(0.3);
 		
 		$.ajax({
-			url: "http://www.plurk.com/Users/getUnreadPlurks",
+			url: "//www.plurk.com/Users/getUnreadPlurks",
 			data: {known_friends: JSON.stringify([uid]) },
 			type: "POST", cache: false,
 			success: function(dataJSON){
@@ -97,7 +97,7 @@
 		for(var i in ids) { (function(id){
 			setTimeout(function(){
 				$.ajax({
-					url: "http://www.plurk.com/TimeLine/setMutePlurk",
+					url: "//www.plurk.com/TimeLine/setMutePlurk",
 					data: {
 						plurk_id: id,
 						value: 2 
