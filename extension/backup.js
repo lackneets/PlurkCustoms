@@ -32,7 +32,7 @@ GalleryBackup.cloudBackup = function(emoticons){
 GalleryBackup.addPlurk = function(url, callback){
 	$.ajax({
 		type: 'POST',
-		url: 'http://www.plurk.com/TimeLine/addPlurk',
+		url: '//www.plurk.com/TimeLine/addPlurk',
 		dataType: 'html',
 		data: {
 			'posted': 		new Date().toISOString(),
@@ -55,14 +55,14 @@ GalleryBackup.addPlurk = function(url, callback){
 }
 GalleryBackup.backupPaste = function(emoticons, callback){
 	var base64 = this.objectToBase64(emoticons);
-	$.post('http://paste.plurk.com/', {
+	$.post('//paste.plurk.com/', {
 		'code': 		base64,
 		'language': 	'text',
 		'webpage': 		'',
 		'private': 		'on'
 	}, function(html){
 		var href = $($.parseHTML(html)).find('#direct_link a').attr('href');
-		callback && callback('http://paste.plurk.com/' + href);
+		callback && callback('//paste.plurk.com/' + href);
 	});
 	return base64;
 }
