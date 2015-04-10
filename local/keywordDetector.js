@@ -15,7 +15,7 @@ $(".plurk img[src*='emos.plurk.com']:not([keyword])").livequery(function(){
 
 function findKeywords(plurkData){
 	var RegExBrackets = /(\[[^\]]+\])/g ;
-	var RegExEmosUrl = /http:\/\/emos\.plurk\.com\/[0-9a-f]{32}_w\d+_h\d+\.\w+/g;
+	var RegExEmosUrl = /https?:\/\/emos\.plurk\.com\/[0-9a-f]{32}_w\d+_h\d+\.\w+/g;
 	var RegExEmosHash = /[0-9a-f]{32}/g;
 	var emos = plurkData.content.match(RegExEmosUrl);
 	var brackets = plurkData.content_raw.match(RegExBrackets);
