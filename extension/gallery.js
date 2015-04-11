@@ -570,7 +570,7 @@ Gallery.prototype.showToolsTab = function(wrapper, loading){
 	var footer = $('<div/>', { class: 'footer',
 		css: { 'text-align': 'right' },
 		html: [
-			"PlurkCustoms " + manifest('version') + " © 2011-2013 噗浪卡卡"
+			"PlurkCustoms " + manifest('version') + " © 2011-2015 噗浪卡卡"
 		]
 	});
 
@@ -677,7 +677,7 @@ Gallery.prototype.showSettingTab = function(wrapper, loading){
 	var footer = $('<div/>', { class: 'footer',
 		css: { 'text-align': 'right' },
 		html: [
-			"PlurkCustoms " + manifest('version') + " © 2011-2013 噗浪卡卡"
+			"PlurkCustoms " + manifest('version') + " © 2011-2015 噗浪卡卡"
 		]
 	});
 
@@ -1064,7 +1064,7 @@ Gallery.prototype.generateGalleryTable = function(emoticons, clickHandler, heade
 			$('<span/>', {
 				css: { float: 'right' },
 				html: [
-					"PlurkCustoms " + manifest('version') + " © 2011-2013 噗浪卡卡"
+					"PlurkCustoms " + manifest('version') + " © 2011-2015 噗浪卡卡"
 				]
 
 			}),
