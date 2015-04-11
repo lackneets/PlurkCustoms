@@ -12,7 +12,7 @@ AvatarZoomPlugin.prototype.start = function(){
 		if(!self.enabled) return;
 		if( (m = $(this).attr('src').match(/(\d+)-small(\d+)/)) ){
 			$(this).on('load', self.enlarge);
-			$(this).attr('src', ( 'http://avatars.plurk.com/'+ m[1] +'-big'+m[2]+'.jpg' ));
+			$(this).attr('src', ( '//avatars.plurk.com/'+ m[1] +'-big'+m[2]+'.jpg' ));
 		}else{ 
 			self.enlarge.call(this, this);
 		}
