@@ -41,7 +41,7 @@ loadScript('local/notification.js');
 loadScript('local/plurkBox.js');
 loadScript('local/keywordDetector.js');
 loadScript('local/ui.js');
-loadScript('local/noads.js');
+loadScript('local/blockads.js');
 
 loadStyle('lib/nprogress.css');
 loadStyle('lib/dropzone.css');

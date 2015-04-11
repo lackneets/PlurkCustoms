@@ -75,6 +75,7 @@ var gallery ;
 		gallery.registerPlugin(new LocalPluginAdapter('TitleCounterPlugin', __('標題計數器')), 'TitleCounterPlugin');
 		gallery.registerPlugin(new LocalPluginAdapter('NotificationSoundPlugin', __('通知音效')), 'NotificationSoundPlugin');
 		gallery.registerPlugin(new LocalPluginAdapter('AvatarZoomPlugin', __('頭像放大鏡')), 'AvatarZoomPlugin');
+		gallery.registerPlugin(new LocalPluginAdapter('BlockAdsPlugin', __('隱藏廣告')), 'BlockAdsPlugin');
 
 		//
 
