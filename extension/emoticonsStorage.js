@@ -2,6 +2,7 @@ var Emotion = function(emotion_data){
 	for(var i in this.__proto__){
 		this[i] = emotion_data[i];
 	}
+	this.url = this.url.replace(/https?:/, '');
 }
 Emotion.prototype = {
 	keyword	: "",

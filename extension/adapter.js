@@ -101,6 +101,7 @@ function normalizeKeywordFilter(emoticons){
 		emo.keyword = emo.keyword.replace(/'/ig, '');
 		emo.keyword = emo.keyword.replace(/[\[\]]]/ig, '_');
 		emo.keyword = emo.keyword.replace(/[\[\]]]/ig, '_');
+		emo.url = emo.url.replace(/^https?:/i, '');
 		return emo;
 	});
 }
