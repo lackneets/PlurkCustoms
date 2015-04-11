@@ -4,7 +4,7 @@
 
 #emotiland .panel#uploadPanel fieldset#emo-add-field1{
   width: 100%;
-  border: 1px solid #CCC;
+  border: none;
 }
 
 #emotiland .panel#uploadPanel fieldset#emo-add-field1 #emo-file-form{
