@@ -1,0 +1,68 @@
+#emotiland .panel#uploadPanel{
+  width: 100% !important;
+}
+
+#emotiland .panel#uploadPanel fieldset#emo-add-field1{
+  width: 100%;
+  border: 1px solid #CCC;
+}
+
+#emotiland .panel#uploadPanel fieldset#emo-add-field1 #emo-file-form{
+  border: 1px dashed #AAA;
+  padding: 10px;
+}
+
+#emotiland .panel#uploadPanel fieldset#emo-add-field1 #emo-file-form.dz-drag-hover{
+  background: #FDF5E6;
+}
+
+#emotiland .panel#uploadPanel fieldset#emo-add-field1 #emo-file-form .dz-error-message{
+  display: none;
+}
+
+#emotiland .panel#uploadPanel fieldset#emo-add-field1 #emo-file-form input,
+#emotiland .panel#uploadPanel fieldset#emo-add-field1 #emo-file-form label{
+  display:none;
+}
+
+#emotiland .panel#uploadPanel fieldset#emo-add-field1 .dz-success-mark,
+#emotiland .panel#uploadPanel fieldset#emo-add-field1 .dz-error-mark
+{
+  top: 25% !important;
+}
+
+#emotiland .panel#uploadPanel fieldset#emo-add-field1 .dz-preview{
+  height: 48px !important;
+  width: 60px !important;
+  margin: 5px 8px;
+  background: transparent;
+}
+
+#emotiland .panel#uploadPanel fieldset#emo-add-field1 .dz-details{
+  margin: auto;
+  height: 48px;
+  padding: 10px 0;
+}
+
+#emotiland .panel#uploadPanel fieldset#emo-add-field1 .dz-image{
+  width: auto;
+  height: auto;
+  border-radius: 0 !important;
+  overflow: visible;
+  text-align: center;
+}
+
+#emotiland .panel#uploadPanel fieldset#emo-add-field1 .dz-image img{
+  margin: auto;
+  max-width: 48px;
+  max-height: 48px;
+  height: auto;
+}
+
+#emotiland .panel#uploadPanel fieldset#emo-add-field1 legend{
+  display:none;
+}
+
+#emotiland .panel#uploadPanel fieldset#emo-add-field2{
+  display: none;
+}

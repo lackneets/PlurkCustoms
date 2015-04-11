@@ -5,7 +5,8 @@
       "css": [ 
          "css/emotion_selector.css", 
          "css/ui.css",
-         "css/onoffswitch.css"
+         "css/onoffswitch.css",
+         "css/uploader.css"
       ],
       "js": [ 
       	"languages.js", 
@@ -22,6 +23,7 @@
       	"js/jquery.draggable.js",
          "lib/underscore-min.js", 
          "lib/nprogress.js", 
+         "lib/dropzone.js",
 
          "local/loader.js",
 
@@ -37,6 +39,7 @@
          "extension/candidate.js",
          "extension/collector.js",
          "extension/uploadHandler.js",
+         "extension/uploader.js",
          "extension/muteAll.js",
          "extension/packer.js",
          "local/portal.js"

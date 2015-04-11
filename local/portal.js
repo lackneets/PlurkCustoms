@@ -44,7 +44,7 @@ loadScript('local/ui.js');
 loadScript('local/noads.js');
 
 loadStyle('lib/nprogress.css');
-loadScript('lib/nprogress.js');
+loadStyle('lib/dropzone.css');
 
 //時光機
 $.wait("#filter_tab span:contains((0))", function(element){
