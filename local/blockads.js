@@ -3,7 +3,8 @@ function BlockAdsPlugin(){
   this.selector.push('#plurk_ads');
   this.selector.push('.adv');
   this.selector.push('.adsense');
-  this.selector.push('iframe:not([src*=plurk])');
+  this.selector.push('.cbox_ads');
+  //this.selector.push('iframe:not([src*=plurk])');
   this.selector = this.selector.join(', ');
 }
 BlockAdsPlugin.prototype = Object.create(Plugin.prototype); /*Plugin.prototype*/;
