@@ -1,40 +1,54 @@
-TitleCounterPlugin = function(){}
+"use strict";
+
+function TitleCounterPlugin(){}
 TitleCounterPlugin.prototype = Object.create(Plugin.prototype); /*Plugin.prototype*/;
 TitleCounterPlugin.prototype.parent = Plugin;
 
 TitleCounterPlugin.prototype.timer = null;
 TitleCounterPlugin.prototype.origin = null;
 TitleCounterPlugin.prototype.start = function(){
-	var self = this;
-	this.origin = document.title;
+
+	var count_my;
+	var count_responded;
+
+	var title         = document.title;
+	var titleDetail   = document.title;
+	var defaultTitle  = document.title;
+
+	this.defaultTitle = defaultTitle;
+
 	this.timer = setInterval(function(){
 		if(typeof Poll == 'undefined') return;
 		Poll.counts = Poll.getUnreadCounts();
 		
-		//if(typeof arguments.callee.my == 'undefined' && (Poll.counts.my + Poll.counts.responded) > 0) notificationSound();
-		if(typeof arguments.callee.my == 'undefined') arguments.callee.my = Poll.counts.my;
-		if(typeof arguments.callee.responded == 'undefined') arguments.callee.responded = Poll.counts.responded;
+		count_my = Poll.counts.my;
+		count_responded = Poll.counts.responded;
+
+		var detail = '';
 		
-		/*if(arguments.callee.my < Poll.counts.my || arguments.callee.responded < Poll.counts.responded){
-			notificationSound();
-			console.log('notificationSound');
-		}*/
-		arguments.callee.my = Poll.counts.my;
-		arguments.callee.responded = Poll.counts.responded;
-		
-		var defaultTitle = document.title, title = "", detail = "";
-		if(Poll.counts.my) detail 			+= " " + __("我 %d").replace('%d', Poll.counts.my) + " ";	
-		if(Poll.counts.responded) detail 	+= " " + __("回 %d").replace('%d', Poll.counts.responded) + " ";
-		if(Poll.counts.priv) detail 		+= " " + __("私 %d").replace('%d', Poll.counts.priv) + " ";
+		detail += (Poll.counts.my > 0)        ? __('我 %d').replace('%d', Poll.counts.my) + ' '        : '';
+		detail += (Poll.counts.responded > 0) ? __('回 %d').replace('%d', Poll.counts.responded) + ' ' : '';
+		detail += (Poll.counts.priv > 0)      ? __('私 %d').replace('%d', Poll.counts.priv) + ' '      : '';
+		detail += (Poll.counts.my > 0)        ? __('我 %d').replace('%d', Poll.counts.my) + ' '        : '';
+		detail += (Poll.counts.all > 0)       ? __('未讀 %d').replace('%d', Poll.counts.all) + ' '     : '';
+
 		detail = detail.replace(/^\s+/, '').replace(/\s+$/, '');
-		if(detail) title = title + " " + detail + "";
-		if(Poll.counts.all) title 			+= " " + __("未讀 %d").replace('%d', Poll.counts.all) + " ";
-		
-		if(title) document.title = title + " - " + TopBar.cur_page_title;
-		else document.title = defaultTitle;
+
+		if(detail){
+			titleDetail = detail + ' - ' + TopBar.cur_page_title;
+			titleDetail = titleDetail.replace(/\s{2,}/g, ' ');
+		}else{
+			titleDetail = TopBar.cur_page_title;
+		}
+
+		if(document.title != titleDetail){
+			title = titleDetail;
+			document.title = title;
+		}
+
 	}, 200);
 }
 TitleCounterPlugin.prototype.stop = function(){
 	clearInterval(this.timer);
-	document.title = this.origin ;
+	document.title = this.defaultTitle;
 }
