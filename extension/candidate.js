@@ -305,6 +305,7 @@ CandidatePlugin.prototype.start = function(){
 	this.candidate.enabled = true;
 }
 CandidatePlugin.prototype.stop = function(){
+	this.candidate = this.candidate || new GalleryCandidate(this.gallery);
 	this.candidate.enabled = false;
 	$("#main_poster .candidate, .mini_form .candidate").fadeOut('fast', function(){ $(this).remove()});
 }
