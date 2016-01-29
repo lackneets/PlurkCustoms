@@ -25,7 +25,6 @@ loadScript('local/loader.js');
 localScript('var _jQuery = jQuery.noConflict(true); ');
 loadScript('js/jquery.min.js');
 localScript('var $ = jQuery.noConflict(true); jQuery = _jQuery;');
-loadScript('js/jquery-migrate-1.2.1.js');
 loadScript('js/usingjQuery.js');
 loadScript('js/jquery.wait.js');
 loadScript('js/jquery.livequery.js');

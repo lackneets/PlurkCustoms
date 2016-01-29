@@ -32,7 +32,7 @@ GalleryCandidate.prototype.init = function(){
 		if($("#input_small").length && $("#input_small").val().length == 0) $(".mini_form .candidate").fadeOut('fast', function(){ $(this).remove()});
 	}, 200);
 
-	$(".cmp_plurk").live('click', function(e){ 
+	$(".cmp_plurk").livequery('click', function(e){ 
 		if(!self.enabled) return;
 		self.candidateDiv = $(".candidate");
 		if(e.keyCode == 13) self.candidateDiv.fadeOut('fast',function(){ $(this).remove()});
