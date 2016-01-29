@@ -36,9 +36,12 @@ TitleCounterPlugin.prototype.start = function(){
 
 		if(detail){
 			titleDetail = detail + ' - ' + TopBar.cur_page_title;
+			titleDetail = titleDetail.replace(/\s{2,}/g, ' ');
+		}else{
+			titleDetail = TopBar.cur_page_title;
 		}
 
-		if(title != titleDetail){
+		if(document.title != titleDetail){
 			title = titleDetail;
 			document.title = title;
 		}
