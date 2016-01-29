@@ -48,25 +48,41 @@ function createStyle(targetDocument, style){
 }
 
 function getLocal(variable, callback){
-	var id = '__getLocal__' + (new Date()).getTime();
-	var container = $('#__getLocal__protocal').get(0) || $('<div id="__getLocal__protocal">').appendTo(document.body).get(0);
-	localScript(function(args){
-		var e = document.createElement('div');
-		var t = document.createTextNode(JSON.stringify(eval(args.variable)));
-		e.id = args.id;
-		e.style.display = 'none';
-		e.appendChild(t);
-		document.getElementById('__getLocal__protocal').appendChild(e);
-
-	}, {variable: variable, id: id})
-	function retrive(){
-		var e = document.getElementById(id);
-		if(e){
-			callback(JSON.parse(e.firstChild.nodeValue));
-			document.getElementById('__getLocal__protocal').removeChild(e);
-		}else{
-			setTimeout(retrive, 200);
-		}
-	}
-	setTimeout(retrive, 200);
+	var localVariable = new LocalVariableListener(variable);
+	localVariable.listen(callback);
 }
+
+function LocalVariableListener(variable){
+	if(LocalVariableListener.listeners[variable]){
+		return LocalVariableListener.listeners[variable];
+	}
+	this.variable = variable;
+	this.subscribe();
+	LocalVariableListener.listeners[variable] = this
+
+}
+LocalVariableListener.prototype.subscribe = function(){
+	localScript(function(args){
+		setInterval(function(){
+			try{
+				sessionStorage.setItem('_variable_listener_' + args.variable, JSON.stringify(eval(args.variable)));
+			}catch(e){
+				sessionStorage.setItem('_variable_listener_' + args.variable, JSON.stringify(null));
+			}
+		}, 100);
+	}, {variable: this.variable});
+
+}
+LocalVariableListener.prototype.listen = function(callback){
+	setTimeout(function(){
+		var value;
+		try{
+			value = JSON.parse(sessionStorage.getItem('_variable_listener_' + this.variable));
+		}catch(e){
+			value = null;
+		}
+		callback && callback(value);
+	}.bind(this), 150);
+}
+LocalVariableListener.listeners = {};
+
