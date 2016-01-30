@@ -32,24 +32,24 @@ Gallery.prototype.currentClassName = '';
 
 Gallery.prototype.init = function() { 
 	var	self = this;
-	$("#main_poster .smily_holder img").live("click",function(){
+	$("#main_poster .smily_holder img").livequery("click",function(){
 		self.lastInputFocused = document.getElementById('input_big');
 	});
-	$(".mini_form .smily_holder img").live("click",function(){
+	$(".mini_form .smily_holder img").livequery("click",function(){
 		self.lastInputFocused = document.getElementById('input_small');
 	});
 	
-	$(".cmp_emoticon_on, .cmp_emoticon_off, #main_poster .emoticon_selecter_img_on, #main_poster .emoticon_selecter_img_off").live("click",function(){
+	$(".cmp_emoticon_on, .cmp_emoticon_off, #main_poster .emoticon_selecter_img_on, #main_poster .emoticon_selecter_img_off").livequery("click",function(){
 		self.lastInputFocused = document.getElementById('input_big');
 	});
-	$(".cmp_emoticon_mini_on, .cmp_emoticon_mini_off, .mini_form .emoticon_selecter_img_on, .mini_form .emoticon_selecter_img_off").live("click",function(){
+	$(".cmp_emoticon_mini_on, .cmp_emoticon_mini_off, .mini_form .emoticon_selecter_img_on, .mini_form .emoticon_selecter_img_off").livequery("click",function(){
 		self.lastInputFocused = document.getElementById('input_small');
 	});
 	
-	$(".private_plurk_form .smily_holder img").live("click",function(){
+	$(".private_plurk_form .smily_holder img").livequery("click",function(){
 		self.lastInputFocused = document.getElementById('input_big_private');
 	});
-	$(".private_plurk_form .smily_holder img").live("click",function(){
+	$(".private_plurk_form .smily_holder img").livequery("click",function(){
 		self.lastInputFocused = document.getElementById('input_big_private');
 	});
 

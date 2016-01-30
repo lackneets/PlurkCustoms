@@ -15,7 +15,6 @@
          "js/jszip.js",
          "js/jszip-inflate.js",
       	"js/jquery.min.js", 
-         "js/jquery-migrate-1.2.1.js",
          "js/jquery.wait.js", 
       	"js/jquery.livequery.js", 
       	"js/jquery.event-filter.min.js", 
