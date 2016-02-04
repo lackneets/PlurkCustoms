@@ -62,13 +62,15 @@ function shortcut(gallery){
 		}
 
 		function findCurrentInput(element){
-			var input = gallery.lastInputFocused = $(element).parents('.plurkForm').find('#input_big, #input_small').get(0);
+			// NOTE: plurkFrom 官方錯字
+			var input = gallery.lastInputFocused = $(element).closest('.plurkForm, .plurkFrom').find('#input_big, #input_small').get(0);
 			var id = $(gallery.lastInputFocused).attr('id');
 			return id;
 		}
 
 		function openGallery(event){
-			var input = gallery.lastInputFocused = $(event.target).parents('.plurkForm').find('#input_big, #input_small').get(0);
+			// NOTE: plurkFrom 官方錯字
+			var input = gallery.lastInputFocused = $(event.target).closest('.plurkForm, .plurkFrom').find('#input_big, #input_small').get(0);
 			var id = $(gallery.lastInputFocused).attr('id');
 			localScript("Emoticons.toggle('"+id+"');");
 			gallery.openGallery();

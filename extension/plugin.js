@@ -1,7 +1,7 @@
 function Plugin(){
 	this.constructor.plugins.push(this);
 	this.id = '_Plugin_' + this.constructor.plugins.length;
-	console.log('Plugin Created', this.title, this.id);
+	//console.log('Plugin Created', this.title, this.id);
 	this.init();
 }
 

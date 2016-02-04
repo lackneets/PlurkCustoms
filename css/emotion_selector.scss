@@ -44,15 +44,12 @@ span.emoticon_my_wrapper:after{content:""!important; right:0;position:absolute;t
 	-webkit-transition: 0.2s linear;
 }
 .candidate{
-	-webkit-transition: 0.2s linear;
+	/* 會有閃爍問題 先拿掉 transition, animation */
 	margin-top:5px;
 	background: white;
 	width:100%;
 	min-height: 66px;
 	max-height: 135px; overflow-y:scroll;
-	-webkit-animation-name: fadeIn;
-	-webkit-animation-iteration-count: 1;
-	-webkit-animation-duration: 0.5s;
 }
 
 .candidate {
@@ -170,8 +167,7 @@ body{
 						opacity: 1;
 						position:relative !important;
 						z-index:9999 !important;
-						-webkit-box-shadow: 0 0 2px 3px #E35D1C!important;
-						-moz-box-shadow: 0 0 2px 3px #E35D1C!important;
+						box-shadow: #D22E3F 0px 0px 1px 1px, inset #D22E3F 0 0 1px 1.5px;
 					}
 				}
 			}
@@ -179,6 +175,8 @@ body{
 		}
 
 		&.large {
+			background: white;
+			box-shadow: 0px -2px 2px rgba(0,0,0,.5);
 			width: 100% !important;
 			height: 305px!important;
 			position: fixed !important;
@@ -186,7 +184,7 @@ body{
 			bottom: 0px !important;
 			left: 0px !important;
 			#emoticons_show {
-				height: 270px !important;
+				height: 265px !important;
 				overflow: hidden;
 				table.plurkCustoms.gallery{	
 					width: 100%;
@@ -209,6 +207,13 @@ body{
 						margin-left: -1px;
 						opacity: 0;
 					}					
+				}
+
+				.tabWrapper{
+					height: 250px;
+					padding: 0 20px;
+					overflow-y: visible;
+					overflow-x: scroll;
 				}
 
 			}

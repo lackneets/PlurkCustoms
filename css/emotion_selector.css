@@ -10,10 +10,8 @@
 @-webkit-keyframes fadeIn {
   0% {
     opacity: 0; }
-
   100% {
     opacity: 1; } }
-
 .input_holder {
   position: relative; }
 
@@ -58,16 +56,13 @@ span.emoticon_my_wrapper:after {
   -webkit-transition: 0.2s linear; }
 
 .candidate {
-  -webkit-transition: 0.2s linear;
+  /* 會有閃爍問題 先拿掉 transition, animation */
   margin-top: 5px;
   background: white;
   width: 100%;
   min-height: 66px;
   max-height: 135px;
-  overflow-y: scroll;
-  -webkit-animation-name: fadeIn;
-  -webkit-animation-iteration-count: 1;
-  -webkit-animation-duration: 0.5s; }
+  overflow-y: scroll; }
 
 .candidate div {
   margin: 2px;
@@ -145,8 +140,8 @@ body #emoticon_selecter {
             opacity: 1;
             position: relative !important;
             z-index: 9999 !important;
-            -webkit-box-shadow: 0 0 2px 3px #4a7de4 !important;
-            -moz-box-shadow: 0 0 2px 3px #4a7de4 !important; }
+            -webkit-box-shadow: 0 0 2px 3px #4A7DE4 !important;
+            -moz-box-shadow: 0 0 2px 3px #4A7DE4 !important; }
           body #emoticon_selecter #emoticons_show table.plurkCustoms.gallery tr td a {
             display: inline-block;
             width: 100%;
@@ -165,9 +160,10 @@ body #emoticon_selecter {
         opacity: 1;
         position: relative !important;
         z-index: 9999 !important;
-        -webkit-box-shadow: 0 0 2px 3px #e35d1c !important;
-        -moz-box-shadow: 0 0 2px 3px #e35d1c !important; }
+        box-shadow: #D22E3F 0px 0px 1px 1px, inset #D22E3F 0 0 1px 1.5px; }
   body #emoticon_selecter.large {
+    background: white;
+    box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.5);
     width: 100% !important;
     height: 305px !important;
     position: fixed !important;
@@ -175,7 +171,7 @@ body #emoticon_selecter {
     bottom: 0px !important;
     left: 0px !important; }
     body #emoticon_selecter.large #emoticons_show {
-      height: 270px !important;
+      height: 265px !important;
       overflow: hidden; }
       body #emoticon_selecter.large #emoticons_show table.plurkCustoms.gallery {
         width: 100%; }
@@ -194,6 +190,11 @@ body #emoticon_selecter {
           font-size: 1px;
           margin-left: -1px;
           opacity: 0; }
+      body #emoticon_selecter.large #emoticons_show .tabWrapper {
+        height: 250px;
+        padding: 0 20px;
+        overflow-y: visible;
+        overflow-x: scroll; }
     body #emoticon_selecter.large table:not(.protected) {
       width: 100% !important;
       height: auto !important;
@@ -286,3 +287,5 @@ body #emoticon_selecter {
 /*廣告 2013.01.10*/
 #resp_banner_ads {
   display: none !important; }
+
+/*# sourceMappingURL=emotion_selector.css.map */

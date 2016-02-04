@@ -224,6 +224,8 @@ Gallery.prototype.useEmoticon = function(keyword, backward){
 	var self = this;
 	if(!backward) backward = 0;
 	if ( !this.lastInputFocused  ) this.lastInputFocused = document.getElementById('input_big');
+
+	console.log(this.lastInputFocused)
 	
 	var s = this.lastInputFocused.selectionStart;
 	
@@ -354,7 +356,10 @@ Gallery.prototype.switchTab = function(className){
 Gallery.prototype.open = function(className, inputTarget){
 	var self = this;
 	inputTarget = inputTarget || 'input_big';
-	this.lastInputFocused = $('.plurkForm').find('#' + inputTarget).get(0);
+	// NOTE: plurkFrom 官方錯字
+	this.lastInputFocused = $('.plurkForm, .plurkFrom').find('#' + inputTarget).get(0);
+
+	console.log(inputTarget,this.lastInputFocused)
 	$('#emoticon_selecter .tabWrapper').hide();
 	$('#emoticons_tabs').livequery(function(){
 		console.log('open:live', className);
@@ -904,24 +909,14 @@ Gallery.prototype.generateGalleryTab = function(){
 	}
 
 
-	$("<a class='switchWindowMode' style='float:right;height:9px;width:9px; margin:8px; padding:2px; background:url(http://emos.plurk.com/633e54d3723da4e8c1acc48288e952bc_w8_h8.gif) no-repeat; cursor:pointer;' title='切換視窗大小'></a>").toggle(function(){
-		$(this).parents('#emoticon_selecter').addClass('large').draggable({ disabled: true });
-		$('body').addClass('large_emoticon_selecter');
+	$("<a class='switchWindowMode' style='float:right;height:9px;width:9px; margin:8px; padding:2px; background:url(http://emos.plurk.com/633e54d3723da4e8c1acc48288e952bc_w8_h8.gif) no-repeat; cursor:pointer;' title='切換視窗大小'></a>")
+	.on('click', function(){
+		$('body').toggleClass('large_emoticon_selecter');
+		$('#emoticon_selecter').toggleClass('large');
 		$('.tableWrapper').scrollTop(0);
-		/*_.each(self.lazyLoaders, function(loader){
-			loader.start();
-		});*/
 		self.lazyLoaders[self.currentClassName] && self.lazyLoaders[self.currentClassName].start();
-
-	},function(){
-		$(this).parents('#emoticon_selecter').removeClass('large').draggable({ disabled: false });
-		$('body').removeClass('large_emoticon_selecter');
-		$('.tableWrapper').scrollTop(0);
-		/*_.each(self.lazyLoaders, function(loader){
-			loader.start();
-		});*/
-		self.lazyLoaders[self.currentClassName] && self.lazyLoaders[self.currentClassName].start();
-	}).insertAfter("#emoticons_tabs a.bn_close");
+	}).insertAfter("#emoticons_tabs #emo_emotiland_button");
+		
 
 	this.registerTab('gallery default', this.showGalleryDefault, __('基本'));
 	this.registerTab('gallery online', this.showGalleryOnline, __('線上'));
@@ -937,9 +932,9 @@ Gallery.prototype.generateGalleryTab = function(){
 
 
 	//Make it draggable
-	$("#emoticon_selecter").draggable({attachTo: "#emoticons_tabs", ignore: "a, li", "cursor": "move" })
-	createStyle(doc, "#emoticon_selecter.ondrag {opacity: 0.5;}");
-	createStyle(doc, "#emoticon_selecter {-webkit-box-shadow: rgba(0, 0, 0, 0.8) 2px 2px 5px 0px;-webkit-transition: opacity 0.2s linear;}");
+	// $("#popViewContent").draggable({attachTo: "#emoticons_tabs", ignore: "a, li", "cursor": "move" })
+	// createStyle(doc, "#emoticon_selecter.ondrag {opacity: 0.5;}");
+	// createStyle(doc, "#emoticon_selecter {-webkit-box-shadow: rgba(0, 0, 0, 0.8) 2px 2px 5px 0px;-webkit-transition: opacity 0.2s linear;}");
 	//createStyle(doc, "#emoticon_selecter #emoticons_tabs {cursor: move ;}");	
 }
 Gallery.prototype.createGalleryFilter = function(table, callback){
@@ -1097,7 +1092,7 @@ Gallery.prototype.generateGalleryTable = function(emoticons, clickHandler, heade
 }
 Gallery.prototype.reduceOnlineEmoticons = function(max, callback){
 	var self = this;
-	console.log('縮減線上表情', max);
+	// console.log('縮減線上表情', max);
 	self.getRemovableEmoticons(function(removeable){
 		self.storage.loadEmotions(function(emoticons){
 			_.each(removeable, function(toRemove, i){
