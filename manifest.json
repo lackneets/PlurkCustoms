@@ -49,11 +49,11 @@
    "web_accessible_resources" : ["manifest.json","*.js", "*.css", "*.mp3", "*.css", "*.*"],
    "description": "噗浪最強的非官方支援擴充功能！自訂表情圖庫可以幫助您輕鬆蒐集表情符號、方便使用與管理雲端備份，並支援中英日語系。附加許多貼心功能以及介面上的改善讓你享受前所未有的衝浪體驗，豐富你多采多姿的噗浪生活每一天。",
    "icons": {
-      "128": "gallery_128.png",
-      "16": "gallery_128.png"
+      "128": "pc-128.png",
+      "16": "pc-32.png"
    },
    "name": "PlurkCustoms 噗浪卡卡圖庫",
    "permissions": [ "storage", "http://*.plurk.com/*", "https://*.plurk.com/*", "bookmarks", "contextMenus", "tabs" ],
    "update_url": "http://clients2.google.com/service/update2/crx",
-   "version": "1.7.8.2"
+   "version": "1.7.8.3"
 }

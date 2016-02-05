@@ -273,12 +273,11 @@ GalleryCandidate.prototype.getDefaultSmiles = function(callback){
 	return this.gallery.storage.online.getDefaultSmiles(callback);
 }
 
-GalleryCandidate.prototype.selectByKey =  function(e, parent){
-	//var candidateDiv = $(parent).find(".candidate"); 
-	var candidateDiv = $(parent).siblings('.candidate');
+GalleryCandidate.prototype.selectByKey =  function(e, parent){ 
+	var candidateDiv = $(parent).closest('form, #form_holder').find('.candidate');
 	var key = Keycode.getValueByEvent(e);
 	var self = this;
-	if((e.altKey) &&  new String(key).match(/[0-9]/)){
+	if((e.altKey) && new String(key).match(/[0-9]/)){
 		evt = $.Event("click");
 		if( ((!isMac && e.ctrlKey) || isMac && e.metaKey)  ) evt.altKey = true;
 		clearTimeout(self.delayTimer);
