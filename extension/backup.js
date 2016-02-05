@@ -62,7 +62,9 @@ GalleryBackup.backupPaste = function(emoticons, callback){
 			jb.closeAgent();
 			var href = $($.parseHTML(html)).find('#direct_link a').attr('href');
 			callback && callback('//paste.plurk.com' + href);
-		})
+		}, function(){
+			NProgress.done(true);
+		});
 		return true;
 	}
 
@@ -74,7 +76,11 @@ GalleryBackup.backupPaste = function(emoticons, callback){
 	}, function(html){
 		var href = $($.parseHTML(html)).find('#direct_link a').attr('href');
 		callback && callback('//paste.plurk.com' + href);
+	}).error(function(){
+		alert('連線發生錯誤，請稍候再試一次');
+		NProgress.done(true);
 	});
+
 	return base64;
 }
 GalleryBackup.restoreFromPaste = function(url, method, callback){
@@ -102,19 +108,24 @@ GalleryBackup.restoreFromPaste = function(url, method, callback){
 		}, function(response){
 			jb.closeAgent();
 			GalleryBackup.restoreFromPasteHTML(response, method, callback);
-		})
+		}, function(){
+			NProgress.done(true);
+		});
 		return false;
 	}
 
 	$.get(url, function(html){
 		 GalleryBackup.restoreFromPasteHTML(html, method, callback);
-	})
+	}).error(function(){
+		alert('連線發生錯誤，請稍候再試一次');
+		NProgress.done(true);
+	});
 }
 GalleryBackup.restoreFromPasteHTML = function(html, method, callback){
 	var base64 = $($.parseHTML(html)).find('div.code:first .syntax').text();
 	var emoticons = GalleryBackup.restore(base64, 'base64', method, function(){
-	NProgress.done(true);;
-	callback && callback(emoticons);
+	NProgress.done(true);
+		callback && callback(emoticons);
 	});
 }
 GalleryBackup.restore = function(data, datatype, method, callback){
@@ -192,7 +203,6 @@ function Jailbreaker(){
 	}else if(window.opener){
 		this.role = 'agent';
 		this.master = window.opener;
-		this.silent();
 	}
  
 	this.init();
@@ -204,9 +214,10 @@ Jailbreaker.prototype.init = function(){
 			action: 'agentReady',
 		}, '*');
 		window.addEventListener("message", function (event) {
-		if(event.data instanceof Object && event.data.from == 'Jailbreaker' && event.data.action == 'request' ){
-			this.handleRequest(event.data.request);
-		}
+			if(event.data instanceof Object && event.data.from == 'Jailbreaker' && event.data.action == 'request' ){
+				this.silent();
+				this.handleRequest(event.data.request);
+			}
 		}.bind(this), false);
 	}else{
 		window.addEventListener("message", function (event) {
@@ -223,18 +234,21 @@ Jailbreaker.prototype.handleRequest = function(request){
 		if(this.tasks[request.taskname] instanceof Function){
 			this.tasks[request.taskname].bind(this, request.args, function(response){
 				this.postResponse(request.id, response);
+			}.bind(this), function(){
+				this.postResponse(request.id, null, true);
 			}.bind(this))();
 		}       
 	}
 }
-Jailbreaker.prototype.postResponse = function(id, resposne){
+Jailbreaker.prototype.postResponse = function(id, resposne, error){
 	if(this.role == 'agent'){
 		this.master.postMessage({
 			from: 'Jailbreaker',
 			action: 'response',
 			response: {
 				id: id,
-				data: resposne
+				data: resposne,
+				error: error
 			}
 		}, '*');
 	}
@@ -244,7 +258,7 @@ Jailbreaker.prototype.addTask = function(taskname, operation){
 		this.tasks[taskname] = operation
 	}
 }
-Jailbreaker.prototype.request = function(taskname, args, callback){
+Jailbreaker.prototype.request = function(taskname, args, callback, onError){
 	if(this.role == 'master'){
 		this.jailbreak(function(agent){
 			var id = new Date().getTime();
@@ -257,16 +271,26 @@ Jailbreaker.prototype.request = function(taskname, args, callback){
 					args: args
 				}
 			}, '*');
-			this.waitResponse(id, callback)
+			this.waitResponse(id, callback, onError || function(){});
 		}.bind(this));
 	}
 }
-Jailbreaker.prototype.waitResponse = function(id, callback){
+Jailbreaker.prototype.waitResponse = function(id, callback, onError){
 	if(this.role == 'master'){
+		var connection = setInterval(function(){
+			if(!this.agent.window){
+				clearInterval(connection);
+				onError.bind(this)();
+			}
+		}.bind(this), 200);
 		window.addEventListener("message", function (event) {
-		if(event.data instanceof Object && event.data.from == 'Jailbreaker' && event.data.action == 'response' && event.data.response.id == id){
-			callback.bind(this)(event.data.response.data, event);
-		}
+			if(event.data instanceof Object && event.data.from == 'Jailbreaker' && event.data.action == 'response' && event.data.response.id == id){
+				if(event.data.response.error){
+					return onError.bind(this)(event.data.response.error, event);
+				}
+				callback.bind(this)(event.data.response.data, event);
+				clearInterval(connection);
+			}
 		}.bind(this), false);
 	}
 }
@@ -314,17 +338,18 @@ Jailbreaker.prototype.silent = function(){
 }
  
 var jb = new Jailbreaker();
-jb.addTask('tellSecret', function(args, callback){
-	callback('There is no secret');
-});
 
-jb.addTask('loadPaste', function(args, callback){
+jb.addTask('loadPaste', function(args, callback, onError){
 	$.get(args.url, function(html){
 		callback && callback(html);
+	}).error(function(){
+		alert('連線發生錯誤，請稍候再試一次');
+		onError();
+		window.close();
 	});
 });
 
-jb.addTask('backupPaste', function(args, callback){
+jb.addTask('backupPaste', function(args, callback, onError){
 	$.post('//paste.plurk.com/', {
 		'code':         args.code,
 		'language':     'text',
@@ -332,5 +357,9 @@ jb.addTask('backupPaste', function(args, callback){
 		'private':      'on'
 	}, function(html){
 		callback(html);
+	}).error(function(){
+		alert('連線發生錯誤，請稍候再試一次');
+		onError();
+		window.close();
 	});
 });
