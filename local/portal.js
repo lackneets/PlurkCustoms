@@ -54,5 +54,5 @@ $.wait("#filter_tab", function(element){
 	loadScript('js/timeMachine.js');
 	$("<a href='#' title='" + __('瀏覽以前的噗') + "' class='off_tab timeMachine' rel='timeMachine'>"+ __('時光機') +"</a>").click(function(){
 		localScript('PlurkCustoms.timeTravel();');
-	}).wrap('<li/>').appendTo(this);
+	}).appendTo(this).wrap('<li/>');
 });
