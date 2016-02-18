@@ -294,10 +294,8 @@ width: 26px; height: 26px;
 #filter_tab li.switch.notification{
 	cursor: pointer;
 	a{
-		width: 16px; height: 16px;
-		display: inline-block;
 		background-image: url(chrome-extension://__MSG_@@extension_id__/images/sound_on.png);
-		background-position: center;
+		background-position: center center;
 		background-repeat: no-repeat;
 	}
 	&.off a{
