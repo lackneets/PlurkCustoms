@@ -137,8 +137,24 @@ PlurkEmotiland.prototype.getOnlineEmoticons = function(callback){
 			dataType: 'json',
 			type: 'POST',
 			success: function(onlineEmotions){
-				self.cache = onlineEmotions.slice(0);
-				callback && callback(onlineEmotions);
+				try{
+
+					// 2016-04-07 噗浪改版造成失效
+					if(onlineEmotions.constructor === Object && onlineEmotions[1]){
+						onlineEmotions = onlineEmotions[1];
+					}
+
+					self.cache = onlineEmotions.slice(0);
+					callback && callback(onlineEmotions);
+				} catch(e){
+					if(e instanceof TypeError){
+						localStorage.diedGetOnlineEmoticonsCount = localStorage.diedGetOnlineEmoticonsCount || 0;
+						localStorage.diedGetOnlineEmoticonsCount++;
+					}
+					if(localStorage.diedGetOnlineEmoticonsCount == 3){
+						alert('噗浪可能改版造成失效，請戳一下小耀博士');
+					}
+				}
 			},
 			error: function(){
 				if(!self.hangup && (self.hangup = true)) alert(__("無法存取您的噗浪自訂表情，請確認您有填寫100%個人資料開啟自訂表情功能"));
