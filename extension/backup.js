@@ -5,6 +5,9 @@ GalleryBackup.MERGE = 'GalleryBackup_MERGE_MODE';
 GalleryBackup.cloudBackup = function(emoticons){
 	var self = this;
  
+	alert('因為噗浪改版，目前無法使用這個功能');
+	return false;
+ 
 	if(NProgress.status){
 		alert(__('忙碌中請稍後再試'));
 		return false;
@@ -85,6 +88,9 @@ GalleryBackup.backupPaste = function(emoticons, callback){
 }
 GalleryBackup.restoreFromPaste = function(url, method, callback){
 	var self = this;
+
+	alert('因為噗浪改版，目前無法使用這個功能');
+	return false;
  
 	if(NProgress.status){
 		alert(__('忙碌中請稍後再試'));
