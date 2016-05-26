@@ -49,6 +49,8 @@ function packer(gallery){
 
 				//var base64 = window.btoa(data);
 				callback && callback(data);
+			}else{
+				callback && callback(null);
 			}
 		}
 
@@ -140,7 +142,10 @@ function packer(gallery){
 										NProgress.set(p);
 									}
 
-									folder.file(fileneme + '.' + ext, base64, {binary: true});
+									if(base64 != null){ // 自動忽略失敗
+										folder.file(fileneme + '.' + ext, base64, {binary: true});
+									}
+									
 									if(toDownload == downloaded){ // 完成
 										packfile();
 										NProgress.set(1.0);
