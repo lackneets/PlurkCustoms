@@ -59,6 +59,7 @@ span.emoticon_my_wrapper:after{content:""!important; right:0;position:absolute;t
 		width: 48px; height: 48px;
 		margin-bottom: 5px;
 		border-bottom: 4px solid transparent;
+		box-sizing: content-box;
 		a{
 			//background-color: #FFF;
 			vertical-align: middle;
@@ -77,7 +78,7 @@ span.emoticon_my_wrapper:after{content:""!important; right:0;position:absolute;t
 			width: 100%;
 		}
 		&:hover {
-			border-bottom: 4px solid #d55b1a;;
+			border-bottom: 4px solid #D22E3F;;
 		}	
 	}
 
@@ -102,6 +103,8 @@ body{
 			z-index: 12000 !important;
 			color: #555;
 			overflow-y:auto;
+
+			background-color: #F9F9FD;
 
 			.tabWrapper{
 				//height: 280px;
@@ -134,9 +137,12 @@ body{
 						height: 55px;
 						line-height: 55px;
 						overflow: hidden;
+						text-align: center;
 						white-space: nowrap;
 						width: 12.5%;
 						width:55px;height:55px;
+						cursor: pointer;
+
 						&.highlighted{
 							opacity: 1;
 							position:relative !important;
@@ -168,6 +174,7 @@ body{
 						position:relative !important;
 						z-index:9999 !important;
 						box-shadow: #D22E3F 0px 0px 1px 1px, inset #D22E3F 0 0 1px 1.5px;
+						border-radius: 4px;
 					}
 				}
 			}

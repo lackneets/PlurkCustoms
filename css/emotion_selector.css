@@ -70,7 +70,8 @@ span.emoticon_my_wrapper:after {
   width: 48px;
   height: 48px;
   margin-bottom: 5px;
-  border-bottom: 4px solid transparent; }
+  border-bottom: 4px solid transparent;
+  box-sizing: content-box; }
   .candidate div a {
     vertical-align: middle;
     line-height: 48px;
@@ -86,7 +87,7 @@ span.emoticon_my_wrapper:after {
   .candidate div span {
     width: 100%; }
   .candidate div:hover {
-    border-bottom: 4px solid #d55b1a; }
+    border-bottom: 4px solid #D22E3F; }
 
 body #emotiland {
   z-index: 12020; }
@@ -104,7 +105,8 @@ body #emoticon_selecter {
     _overflow-x: hidden !important;
     z-index: 12000 !important;
     color: #555;
-    overflow-y: auto; }
+    overflow-y: auto;
+    background-color: #F9F9FD; }
     body #emoticon_selecter #emoticons_show .tabWrapper {
       overflow: hidden; }
     body #emoticon_selecter #emoticons_show .loading {
@@ -132,10 +134,12 @@ body #emoticon_selecter {
           height: 55px;
           line-height: 55px;
           overflow: hidden;
+          text-align: center;
           white-space: nowrap;
           width: 12.5%;
           width: 55px;
-          height: 55px; }
+          height: 55px;
+          cursor: pointer; }
           body #emoticon_selecter #emoticons_show table.plurkCustoms.gallery tr td.highlighted {
             opacity: 1;
             position: relative !important;
@@ -160,7 +164,8 @@ body #emoticon_selecter {
         opacity: 1;
         position: relative !important;
         z-index: 9999 !important;
-        box-shadow: #D22E3F 0px 0px 1px 1px, inset #D22E3F 0 0 1px 1.5px; }
+        box-shadow: #D22E3F 0px 0px 1px 1px, inset #D22E3F 0 0 1px 1.5px;
+        border-radius: 4px; }
   body #emoticon_selecter.large {
     background: white;
     box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.5);

@@ -1,4 +1,4 @@
-
+﻿
 .simpleoverlay{
 background: url(chrome-extension://__MSG_@@extension_id__/images/tweed.png);
 opacity: 0.5;
@@ -94,6 +94,7 @@ width: 26px; height: 26px;
 #emoticons_tabs{
 	ul li {
 		cursor: pointer;
+		vertical-align: bottom;
 		&.gallery.local a{
 			background: url(chrome-extension://__MSG_@@extension_id__/images/posterous-spaces-3-32.png) no-repeat center center;
 		}
@@ -227,6 +228,8 @@ width: 26px; height: 26px;
 		right:0px;left:0px;top:0px;
 		padding : 3px 8px;
 
+		background-color: white;
+
 		border: 1px solid #DDD;
 		border-radius: 5px;
 		margin-left: 8px;
@@ -260,7 +263,20 @@ width: 26px; height: 26px;
 		font-size:12px;
 		cursor:default;
 	}
+
+	&.pc-gallery #emoticons_scroll_holder{ display: none }
+
 }
+
+
+// 2016-05-26 官方強迫顯示388px
+#emoticon_selecter_holder{
+	width: auto !important;
+	#emoticon_child_container{
+		margin: auto;
+	}
+}
+
 
 .plurk.backup .manager .action{display:none;}
 .text_holder .backup {

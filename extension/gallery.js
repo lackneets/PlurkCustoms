@@ -59,6 +59,11 @@ Gallery.prototype.init = function() {
 
 	$('#emoticon_selecter').livequery(function(){
 		self.generateGalleryTab();
+	});
+
+	// 如果開啟非官方面板，加上 pc-gallery
+	$('#emoticons_tabs li').livequery('click', function(){
+		$('#emoticon_selecter').toggleClass('pc-gallery', $(this).is(':not([id^="emo_"])'));
 	})
 }
 
@@ -67,14 +72,11 @@ Gallery.prototype.getPanel = function(){
 	var self = this;
 	//this.generateGalleryTab();
 
-	// 隱藏官方面板
-	$('#emoticon_selecter #emoticon_holder_super_parent').hide();
-
 	if(self.emoticonsPanel){
 		this.loading.show();
 		return self.emoticonsPanel.show().children(':not(.loading)').hide().end();
 	}else{
-		var panel = self.emoticonsPanel = $($('#emoticons_show').get(0) || $('<div id="emoticons_show" />').css('height', '250px').prependTo('#emoticon_selecter')).show().children().hide().end();
+		var panel = self.emoticonsPanel = $($('#emoticons_show').get(0) || $('<div id="emoticons_show" />').css('height', '250px').prependTo('#emoticon_selecter_holder')).show().children().hide().end();
 		var loading = self.loading = self.loading || $('<div/>', { class: 'loading',
 			text: 'Loading...'
 		}).appendTo(panel).show();
@@ -148,6 +150,8 @@ Gallery.prototype.registerTab = function(className, opener, label){
 				// 隱藏官方面板
 				$('#emoticon_selecter #emoticon_holder_super_parent').hide();
 				$('#emoticons_show').show();
+
+				$('#emoticon_selecter').toggleClass('pc-gallery', true);
 
 				opener.apply(self, [wrapper.show(), self.loading.show()]);
 
@@ -359,7 +363,7 @@ Gallery.prototype.open = function(className, inputTarget){
 	// NOTE: plurkFrom 官方錯字
 	this.lastInputFocused = $('.plurkForm, .plurkFrom').find('#' + inputTarget).get(0);
 
-	console.log(inputTarget,this.lastInputFocused)
+	// console.log(inputTarget,this.lastInputFocused)
 	$('#emoticon_selecter .tabWrapper').hide();
 	$('#emoticons_tabs').livequery(function(){
 		console.log('open:live', className);
@@ -375,7 +379,7 @@ Gallery.prototype.openGallery = function(){
 	var self = this;
 	$('#emoticons_tabs li.gallery').livequery(function(){
 		self.switchTab('gallery local');
-	})
+	});
 }
 Gallery.prototype.showGalleryDefault = function(wrapper, loading){
 	var self = this;

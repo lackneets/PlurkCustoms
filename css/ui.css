@@ -72,7 +72,8 @@
   background: url(chrome-extension://__MSG_@@extension_id__/images/gear-2-32.png) no-repeat center center; }
 
 #emoticons_tabs ul li {
-  cursor: pointer; }
+  cursor: pointer;
+  vertical-align: bottom; }
   #emoticons_tabs ul li.gallery.local a {
     background: url(chrome-extension://__MSG_@@extension_id__/images/posterous-spaces-3-32.png) no-repeat center center; }
   #emoticons_tabs ul li.gallery.online a {
@@ -182,6 +183,7 @@
     left: 0px;
     top: 0px;
     padding: 3px 8px;
+    background-color: white;
     border: 1px solid #DDD;
     border-radius: 5px;
     margin-left: 8px;
@@ -211,6 +213,15 @@
     color: #777;
     font-size: 12px;
     cursor: default; }
+  #emoticon_selecter.pc-gallery #emoticons_scroll_holder {
+    display: none; }
+  #emoticon_selecter:not(.pc-gallery) #emoticons_show {
+    display: none; }
+
+#emoticon_selecter_holder {
+  width: auto !important; }
+  #emoticon_selecter_holder #emoticon_child_container {
+    margin: auto; }
 
 .plurk.backup .manager .action {
   display: none; }
