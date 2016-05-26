@@ -46,19 +46,19 @@ function shortcut(gallery){
 		}
 
 		function showUploadPanel(event){
-			var overlay = getOverlay();
-			function closePanel(){
-				localScript("Emotiland._remove();");
-				$(overlay).remove();
-			}
-
-			$(document).on('mousedown', '#emotiland .bn_close', closePanel);
-			overlay.click(closePanel);	
-
-			localScript("Emotiland.attachTo($(document.body));");
-			localScript("Emotiland._showPanel(Emotiland._$panelAdd);");
-			localScript("$('#emotilandAddNew').siblings().removeClass('current').end().addClass('current');");
-			return false;			
+			localScript(['(new GB_Window({',
+			'    caption: \"\",',
+			'    show_close_img: false,',
+			'    overlay_click_close: true,',
+			'    width: 660,',
+			'    height: 444,',
+			'    fullscreen: false,',
+			'    use_fx: false,',
+			'    callback_fn: function() {',
+			'        EmoticonsMy.reloadEverything()',
+			'    }',
+			'})).show(\"/EmoticonManager2\");'].join('\n'));
+			return false;		
 		}
 
 		function findCurrentInput(element){
