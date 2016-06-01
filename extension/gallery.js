@@ -63,7 +63,7 @@ Gallery.prototype.init = function() {
 
 	// 如果開啟非官方面板，加上 pc-gallery
 	$('#emoticons_tabs li').livequery('click', function(){
-		$('#emoticon_selecter').toggleClass('pc-gallery', $(this).is(':not([id^="emo_"])'));
+		$('#emoticon_selecter').toggleClass('pc-gallery', $(this).is(':not([id^="emo_"], .emo_my_tab)'));
 	})
 }
 
@@ -86,7 +86,7 @@ Gallery.prototype.getPanel = function(){
 			loading.appendTo(panel).show();
 		}
 
-		$('#emoticons_tabs li[id^=emo_]').click(function(){
+		$('#emoticons_tabs li[id^=emo_], #emoticons_tabs li.emo_my_tab ').click(function(){
 			$('#emoticon_selecter #emoticon_holder_super_parent').show();
 			$('#emoticons_show').hide();
 		});
