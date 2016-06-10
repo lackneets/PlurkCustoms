@@ -62,10 +62,12 @@ var gallery ;
 		emotiland 	= new PlurkEmotiland();
 		storage 	= new StorageAdapter(emotiland);
 		gallery 	= new Gallery(storage);
+
+		emotiland.getStorageLimit(function(limit){
+			console.info('表符上限為', limit, '將縮減為', limit - 5, '以確保可以上傳新表符');
+			gallery.reduceOnlineEmoticons(limit - 5);
+		});
 		
-
-		gallery.reduceOnlineEmoticons(55);
-
 		//註冊外掛
 		gallery.registerPlugin(new CandidatePlugin(gallery), 'CandidatePlugin');
 		gallery.registerPlugin(new CollectorPlugin(gallery), 'CollectorPlugin');

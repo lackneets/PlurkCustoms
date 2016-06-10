@@ -46,7 +46,7 @@ StorageAdapter.prototype.saveEmotion = function(url, keyword, callback){
 	if(this.handup) return false;
 	this.sendExtensionRequest({saveEmotion: true, url: url, keyword: keyword}, function(emotions){
 		//if(typeof emotions.slice == 'function') emotionsCache = emotions.slice(0);
-		console.log("saveEmotion: userEmotions has been updated");
+		console.info("saveEmotion: 表符已儲存到圖庫");
 		self.flush();
 		if(typeof callback == 'function') callback(emotions);
 	});
@@ -279,4 +279,17 @@ PlurkEmotiland.prototype.getDefaultSmiles = function(callback){
 			callback && callback(emoticons);	
 		})
 	});	
+}
+
+PlurkEmotiland.prototype.isPremium = function(callback){
+	getLocal('GLOBAL', function(GLOBAL){
+		callback && callback(GLOBAL.page_user.premium);
+	});	
+}
+
+PlurkEmotiland.prototype.getStorageLimit = function(callback){
+	this.isPremium(function(isPremium){
+		console.info('上限', isPremium ? 500 : 60)
+		callback && callback(isPremium ? 500 : 60);
+	});
 }

@@ -29,14 +29,6 @@ background-size: 12px;
 padding-left: 16px; 
 }
 
-#main_poster .icons_holder .addEmoticons {
-background: url(chrome-extension://__MSG_@@extension_id__/images/plus-4-32.png) no-repeat center center;
-background-size: 120%;
-cursor: pointer;
-display: inline-block;
-margin:5px 6px 0 0;
-width: 26px; height: 26px;
-}
 
 %smallIcon{
 	background-size: 19px !important;
@@ -51,7 +43,8 @@ width: 26px; height: 26px;
 	display: inline-block;
 	cursor: pointer;
 	margin:5px 6px 0 0;
-	width: 26px; height: 26px;
+	width: 32px; height: 32px;
+	font-size: 30px;
 }
 #emoticon_holder_super_parent{
 	#emoticon_pages_parent{
@@ -59,25 +52,54 @@ width: 26px; height: 26px;
 	}
 }
 
+@mixin pc-icon($code, $size: 1em){
+	// overflow: hidden;
+	vertical-align: middle;
+	font-size: $size;
+	text-decoration: none !important;
+	text-align: center;
+	&:before{
+		content: $code;
+		font-family: "pcustoms-icon";
+		// line-height: inherit;
+		vertical-align: inherit;
+		// font-size: inherit;
+	}
+}
 
+.off_tab.timeMachine{
+	@include pc-icon("\E80E");
+	&:before{
+		margin-right: .31em;
+	}
+}
 
 #main_poster , .mini_form {
 
 	.addEmoticons{
-		background: url(chrome-extension://__MSG_@@extension_id__/images/plus-4-32.png) no-repeat center center;
+		color: #3CB371;
+		@include pc-icon("\E80B", 19px);
 	}
 	.busy{
-		background: url(chrome-extension://__MSG_@@extension_id__/images/x-mark-3-32.png) no-repeat center center;
+		color: #B22222;
+		@include pc-icon("\E801", 19px);
 	}
 	.gallery{
-		background: url(chrome-extension://__MSG_@@extension_id__/images/posterous-spaces-3-32.png) no-repeat center center;
+		color: #D32A40;
+		@include pc-icon("\E806", 19px);
 	}
 	.downloadEmoticons{
-		background: url(chrome-extension://__MSG_@@extension_id__/images/arrow-242-32.png) no-repeat center center;
+		color: #FF6633;
+		@include pc-icon("\E80A", 18px);
 	}
 	.setting{
-		background: url(chrome-extension://__MSG_@@extension_id__/images/gear-2-32.png) no-repeat center center;
+		color: #4682B4;
+		@include pc-icon("\E80C", 19px);
 	}
+}
+
+#main_poster .plurkcustoms_shortcut a{
+	line-height: 32px;
 }
 
 .mini_form .icons_holder{
@@ -96,7 +118,8 @@ width: 26px; height: 26px;
 		cursor: pointer;
 		vertical-align: bottom;
 		&.gallery.local a{
-			background: url(chrome-extension://__MSG_@@extension_id__/images/posterous-spaces-3-32.png) no-repeat center center;
+			color: #D32A40;
+			@include pc-icon("\E806", 19px);
 		}
 		&.gallery.online a{
 			background: url(chrome-extension://__MSG_@@extension_id__/images/plurk_emo_my.png) no-repeat center center;
@@ -105,20 +128,25 @@ width: 26px; height: 26px;
 			background: url(chrome-extension://__MSG_@@extension_id__/images/plurk_emo_extra.png) no-repeat center center;
 		}
 		&.gallery.favorite a{
-			background: url(chrome-extension://__MSG_@@extension_id__/images/star-8-32.png) no-repeat center center;
+			color: #FFA500;
+			@include pc-icon("\E808", 19px);
 		}
 		&.gallery.seen a{
-			background: url(chrome-extension://__MSG_@@extension_id__/images/eye-3-32.png) no-repeat center center;
+			color: #555;
+			@include pc-icon("\E807", 15px);
 		}
 
 		&.tools a{
-			background: url(chrome-extension://__MSG_@@extension_id__/images/wrench-4-32.png) no-repeat center center;
+			color: #555;
+			@include pc-icon("\E80D", 19px);
 		}
 		&.backup a{
-			background: url(chrome-extension://__MSG_@@extension_id__/images/data-backup-32.png) no-repeat center center;
+			color: #FF6633;
+			@include pc-icon("\E809", 19px);
 		}
 		&.setting a{
-			background: url(chrome-extension://__MSG_@@extension_id__/images/gear-2-32.png) no-repeat center center;
+			color: #4682B4;
+			@include pc-icon("\E80C", 19px);
 		}
 		a{
 			background-size: 20px !important;
@@ -189,17 +217,28 @@ width: 26px; height: 26px;
 					background-size: 70px;
 					background-repeat: no-repeat;
 					width: 90px; height: 90px;
+					vertical-align: top !important;
+					line-height: 1.5 !important;;
 					&.audio{
-						background-image: url(chrome-extension://__MSG_@@extension_id__/images/note-128.png);
+						color: #4682B4;
+						@include pc-icon("\E800", 60px);
 					}
 					&.pack{
-						background-image: url(chrome-extension://__MSG_@@extension_id__/images/package-128.png);
+						color: #FF6633;
+						@include pc-icon("\E809", 60px);
 					}
 					&.sync{
-						background-image: url(chrome-extension://__MSG_@@extension_id__/images/recurring-appointment-128.png);
+						color: #2E8B57;
+						// @include pc-icon("\E804", 60px);
+						@include pc-icon("\E80F", 60px);
 					}
-					&.backup{
-						background-image: url(chrome-extension://__MSG_@@extension_id__/images/cloud-128.png);
+					&.update{
+						color: #008080;
+						@include pc-icon("\E804", 60px);
+					}
+					&.github{
+						color: #555;
+						@include pc-icon("\E810", 60px);
 					}
 					&:not(.none):hover{
 						box-shadow: -1px -1px 1px #555;
@@ -310,12 +349,12 @@ width: 26px; height: 26px;
 #filter_tab li.switch.notification{
 	cursor: pointer;
 	a{
-		background-image: url(chrome-extension://__MSG_@@extension_id__/images/sound_on.png);
-		background-position: center center;
-		background-repeat: no-repeat;
+		@include pc-icon("\E803", 18px);
+		line-height: 25px;
 	}
 	&.off a{
-		background-image: url(chrome-extension://__MSG_@@extension_id__/images/sound_off.png);
+		@include pc-icon("\E802", 18px);
+		line-height: 25px;
 	}
 
 }

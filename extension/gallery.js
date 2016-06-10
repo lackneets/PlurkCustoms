@@ -192,15 +192,18 @@ Gallery.prototype.operateEmoticonClick = function(smile, wrapper, callback) {
 			return _.contains(self.emotionUsed, e.keyword); 
 		});
 
-		if(removable.length + self.emotionUsed.length > 50){
-			var toRemove = removable.pop();
-			self.storage.online.removeEmotion(toRemove.url, function(){
+		self.storage.online.getStorageLimit(function(limit){ 
+			// 如果 > 上限 - 5 就移除一個表符
+			if(removable.length + self.emotionUsed.length > limit - 5){
+				var toRemove = removable.pop();
+				self.storage.online.removeEmotion(toRemove.url, function(){
+					uploadAndUse(keyword, url, function(){ wrapper.removeClass('uploading'); });
+				});
+			}else{
+				wrapper.addClass('uploading');
 				uploadAndUse(keyword, url, function(){ wrapper.removeClass('uploading'); });
-			});
-		}else{
-			wrapper.addClass('uploading');
-			uploadAndUse(keyword, url, function(){ wrapper.removeClass('uploading'); });
-		}
+			}			
+		});
 	});
 
 	function uploadAndUse(keyword, url, callback){
@@ -229,8 +232,6 @@ Gallery.prototype.useEmoticon = function(keyword, backward){
 	if(!backward) backward = 0;
 	if ( !this.lastInputFocused  ) this.lastInputFocused = document.getElementById('input_big');
 
-	console.log(this.lastInputFocused)
-	
 	var s = this.lastInputFocused.selectionStart;
 	
 	if(backward) this.lastInputFocused.value = this.lastInputFocused.value.substr(0, this.lastInputFocused.selectionStart-backward) + this.lastInputFocused.value.substr(this.lastInputFocused.selectionStart, this.lastInputFocused.value.length)
@@ -279,77 +280,78 @@ Gallery.prototype.syncFavorites = function(){
 
 
 	self.storage.online.getOnlineEmoticons(function(onlineEmoticons) {
-		//console.log(22, onlineEmoticons);
-		var favorites = EmoticonsStorage.getFavorites();
+		self.storage.online.getStorageLimit(function(limit){
 
-		var pool = {};
-		var toRemove = [];
-		var toUpload = [];
+			var favorites = EmoticonsStorage.getFavorites();
 
-		favorites.length = 50;
+			var pool = {};
+			var toRemove = [];
+			var toUpload = [];
 
-
-		_.each(onlineEmoticons, function(online){
-			if(!_.findWhere(favorites, {hash_id: online.hash_id, keyword: online.keyword})){
-				toRemove.push(online);
-			}
-		});
-
-		_.each(favorites, function(favorite){
-			if(!_.findWhere(onlineEmoticons, {hash_id: favorite.hash_id, keyword: favorite.keyword})){
-				toUpload.push(favorite);
-			}
-		});
+			favorites.length = limit - 5;
 
 
-		var process = toRemove.length + toUpload.length;
-		var finished = 0;
-		var progress = 0;
+			_.each(onlineEmoticons, function(online){
+				if(!_.findWhere(favorites, {hash_id: online.hash_id, keyword: online.keyword})){
+					toRemove.push(online);
+				}
+			});
 
-		if(process == 0){
-			NProgress.done(true);
-			self.switchTab('gallery online')
-		}
+			_.each(favorites, function(favorite){
+				if(!_.findWhere(onlineEmoticons, {hash_id: favorite.hash_id, keyword: favorite.keyword})){
+					toUpload.push(favorite);
+				}
+			});
 
-		function removePhase(){
-			_.each(toRemove, function(emo, i){
-				setTimeout(function(){
-					self.storage.online.removeEmotion(emo.url, proceed);
-				}, i*120);
-			});			
-		}
-		function uploadPhase(){
-			_.each(toUpload, function(emo, i){
-				setTimeout(function(){
-					self.storage.online.addEmotion(emo.url, emo.keyword, proceed);
-				}, i*120);
-			});			
-		}
 
-		function proceed(){
-			finished++;
-			//console.log(finished, process);
-			if(finished == toRemove.length){
-				uploadPhase();
-			}
-			if(finished == process){
+			var process = toRemove.length + toUpload.length;
+			var finished = 0;
+			var progress = 0;
+
+			if(process == 0){
 				NProgress.done(true);
 				self.switchTab('gallery online')
-			}else{
-				var p = (finished / process);
-				if(p - progress > 0.02) {
-					progress = p;
-					NProgress.set(p);
+			}
+
+			function removePhase(){
+				_.each(toRemove, function(emo, i){
+					setTimeout(function(){
+						self.storage.online.removeEmotion(emo.url, proceed);
+					}, i*120);
+				});			
+			}
+			function uploadPhase(){
+				_.each(toUpload, function(emo, i){
+					setTimeout(function(){
+						self.storage.online.addEmotion(emo.url, emo.keyword, proceed);
+					}, i*120);
+				});			
+			}
+
+			function proceed(){
+				finished++;
+				//console.log(finished, process);
+				if(finished == toRemove.length){
+					uploadPhase();
+				}
+				if(finished == process){
+					NProgress.done(true);
+					self.switchTab('gallery online')
+				}else{
+					var p = (finished / process);
+					if(p - progress > 0.02) {
+						progress = p;
+						NProgress.set(p);
+					}
 				}
 			}
-		}
 
-		if(toRemove.length){
-			removePhase();
-		}else{
-			uploadPhase();
-		}
-
+			if(toRemove.length){
+				removePhase();
+			}else{
+				uploadPhase();
+			}
+		});
 	});
 }
 Gallery.prototype.switchTab = function(className){
@@ -604,25 +606,31 @@ Gallery.prototype.showToolsTab = function(wrapper, loading){
 					html: [soundUploader],
 					css: {overflow: 'hidden' },
 					click: function(){
-						//localScript('notificationSound()');
-						//alert('功能開發中，請期待');
 					},
 					mousemove: function(e){
 						if(e.currentTarget != e.target) return false
-						//console.log(e.pageX, e.pageY, e.offsetX-10, e.offsetY-10, e.currentTarget, e.target);
 						soundUploader.css({
 							top: e.offsetY-10,
 							left: e.offsetX-10,
 						});
 					}
 				}),
-				$('<div>', { class: 'item sync',
-					attr: { title: __('同步處理線上表情') },
+				$('<div>', { class: 'item update',
+					attr: { title: __('檢查更新：將線上的表符儲存到圖庫') },
 					click: function(){
-						//alert('功能開發中，請期待');
+						self.storage.online.getStorageLimit(function(limit){
+							console.info('手動檢查更新');
+							console.info('表符上限為', limit, '將縮減為', limit - 5, '以確保可以上傳新表符');
+							self.reduceOnlineEmoticons(limit - 5);
+						});
+					}
+				}),
+				$('<div>', { class: 'item sync',
+					attr: { title: __('鏡像同步：將線上的表符替換成常用的') },
+					click: function(){
 						self.syncFavorites();
 					}
-				}),			
+				}),
 				$('<div>', { class: 'item pack', 
 					attr: { title: __('打包下載所有表情圖案') },
 					click: function(){
@@ -633,26 +641,22 @@ Gallery.prototype.showToolsTab = function(wrapper, loading){
 						}
 					}
 				}),
-				$('<div>', { class: 'item backup', 
-					attr: { title: __('雲端備份到噗浪') },
+				$('<div>', { class: 'item none' }),
+				$('<div>', { class: 'item none' }),
+				$('<div>', { class: 'item github',
+					attr: { title: __('Github: 問題回報') },
 					click: function(){
-						GalleryBackup.cloudBackup();
+						window.open('https://github.com/lackneets/PlurkCustoms/issues', '_pcustoms_issues');
+						return false;
 					}
-				}),				
-
-
-				//$('<div>', { class: 'item none' , click: function(){ GalleryBackup.test(); }}),
-				$('<div>', { class: 'item none' }),
-				$('<div>', { class: 'item none' }),
-				$('<div>', { class: 'item none' }),			
-
+				}),
 				$('<div>', { class: 'item author',
 					attr: { title: __('作者：小耀博士') },
 					click: function(){
-						window.open('http://www.plurk.com/Lackneets', '_author');
+						window.open('https://www.plurk.com/Lackneets', '_author');
 						return false;
 					}
-				})
+				}),
 			]
 		}),
 		footer
@@ -1101,7 +1105,7 @@ Gallery.prototype.reduceOnlineEmoticons = function(max, callback){
 		self.storage.loadEmotions(function(emoticons){
 			_.each(removeable, function(toRemove, i){
 				if( ! _.findWhere(emoticons, {hash_id: toRemove.hash_id}) ){ //不在圖庫內
-					console.log('偵測到新圖片', toRemove.keyword);
+					console.info('偵測到新圖片', toRemove.keyword);
 					self.storage.saveEmotion(toRemove.url, toRemove.keyword); // 保存到圖庫
 				}
 				if(i >= max) setTimeout(function(){

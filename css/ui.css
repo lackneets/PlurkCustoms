@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .simpleoverlay {
   background: url(chrome-extension://__MSG_@@extension_id__/images/tweed.png);
   opacity: 0.5;
@@ -32,15 +33,6 @@
   background-size: 12px;
   padding-left: 16px; }
 
-#main_poster .icons_holder .addEmoticons {
-  background: url(chrome-extension://__MSG_@@extension_id__/images/plus-4-32.png) no-repeat center center;
-  background-size: 120%;
-  cursor: pointer;
-  display: inline-block;
-  margin: 5px 6px 0 0;
-  width: 26px;
-  height: 26px; }
-
 .mini_form .icons_holder .shortcut {
   background-size: 19px !important;
   cursor: pointer;
@@ -54,42 +46,146 @@
   display: inline-block;
   cursor: pointer;
   margin: 5px 6px 0 0;
-  width: 26px;
-  height: 26px; }
+  width: 32px;
+  height: 32px;
+  font-size: 30px; }
 
 #emoticon_holder_super_parent #emoticon_pages_parent {
   margin: 5px 44px; }
 
+.off_tab.timeMachine {
+  vertical-align: middle;
+  font-size: 1em;
+  text-decoration: none !important;
+  text-align: center; }
+  .off_tab.timeMachine:before {
+    content: "";
+    font-family: "pcustoms-icon";
+    vertical-align: inherit; }
+  .off_tab.timeMachine:before {
+    margin-right: .31em; }
+
 #main_poster .addEmoticons, .mini_form .addEmoticons {
-  background: url(chrome-extension://__MSG_@@extension_id__/images/plus-4-32.png) no-repeat center center; }
+  color: #3CB371;
+  vertical-align: middle;
+  font-size: 19px;
+  text-decoration: none !important;
+  text-align: center; }
+  #main_poster .addEmoticons:before, .mini_form .addEmoticons:before {
+    content: "";
+    font-family: "pcustoms-icon";
+    vertical-align: inherit; }
 #main_poster .busy, .mini_form .busy {
-  background: url(chrome-extension://__MSG_@@extension_id__/images/x-mark-3-32.png) no-repeat center center; }
+  color: #B22222;
+  vertical-align: middle;
+  font-size: 19px;
+  text-decoration: none !important;
+  text-align: center; }
+  #main_poster .busy:before, .mini_form .busy:before {
+    content: "";
+    font-family: "pcustoms-icon";
+    vertical-align: inherit; }
 #main_poster .gallery, .mini_form .gallery {
-  background: url(chrome-extension://__MSG_@@extension_id__/images/posterous-spaces-3-32.png) no-repeat center center; }
+  color: #D32A40;
+  vertical-align: middle;
+  font-size: 19px;
+  text-decoration: none !important;
+  text-align: center; }
+  #main_poster .gallery:before, .mini_form .gallery:before {
+    content: "";
+    font-family: "pcustoms-icon";
+    vertical-align: inherit; }
 #main_poster .downloadEmoticons, .mini_form .downloadEmoticons {
-  background: url(chrome-extension://__MSG_@@extension_id__/images/arrow-242-32.png) no-repeat center center; }
+  color: #FF6633;
+  vertical-align: middle;
+  font-size: 18px;
+  text-decoration: none !important;
+  text-align: center; }
+  #main_poster .downloadEmoticons:before, .mini_form .downloadEmoticons:before {
+    content: "";
+    font-family: "pcustoms-icon";
+    vertical-align: inherit; }
 #main_poster .setting, .mini_form .setting {
-  background: url(chrome-extension://__MSG_@@extension_id__/images/gear-2-32.png) no-repeat center center; }
+  color: #4682B4;
+  vertical-align: middle;
+  font-size: 19px;
+  text-decoration: none !important;
+  text-align: center; }
+  #main_poster .setting:before, .mini_form .setting:before {
+    content: "";
+    font-family: "pcustoms-icon";
+    vertical-align: inherit; }
+
+#main_poster .plurkcustoms_shortcut a {
+  line-height: 32px; }
 
 #emoticons_tabs ul li {
   cursor: pointer;
   vertical-align: bottom; }
   #emoticons_tabs ul li.gallery.local a {
-    background: url(chrome-extension://__MSG_@@extension_id__/images/posterous-spaces-3-32.png) no-repeat center center; }
+    color: #D32A40;
+    vertical-align: middle;
+    font-size: 19px;
+    text-decoration: none !important;
+    text-align: center; }
+    #emoticons_tabs ul li.gallery.local a:before {
+      content: "";
+      font-family: "pcustoms-icon";
+      vertical-align: inherit; }
   #emoticons_tabs ul li.gallery.online a {
     background: url(chrome-extension://__MSG_@@extension_id__/images/plurk_emo_my.png) no-repeat center center; }
   #emoticons_tabs ul li.gallery.default a {
     background: url(chrome-extension://__MSG_@@extension_id__/images/plurk_emo_extra.png) no-repeat center center; }
   #emoticons_tabs ul li.gallery.favorite a {
-    background: url(chrome-extension://__MSG_@@extension_id__/images/star-8-32.png) no-repeat center center; }
+    color: #FFA500;
+    vertical-align: middle;
+    font-size: 19px;
+    text-decoration: none !important;
+    text-align: center; }
+    #emoticons_tabs ul li.gallery.favorite a:before {
+      content: "";
+      font-family: "pcustoms-icon";
+      vertical-align: inherit; }
   #emoticons_tabs ul li.gallery.seen a {
-    background: url(chrome-extension://__MSG_@@extension_id__/images/eye-3-32.png) no-repeat center center; }
+    color: #555;
+    vertical-align: middle;
+    font-size: 15px;
+    text-decoration: none !important;
+    text-align: center; }
+    #emoticons_tabs ul li.gallery.seen a:before {
+      content: "";
+      font-family: "pcustoms-icon";
+      vertical-align: inherit; }
   #emoticons_tabs ul li.tools a {
-    background: url(chrome-extension://__MSG_@@extension_id__/images/wrench-4-32.png) no-repeat center center; }
+    color: #555;
+    vertical-align: middle;
+    font-size: 19px;
+    text-decoration: none !important;
+    text-align: center; }
+    #emoticons_tabs ul li.tools a:before {
+      content: "";
+      font-family: "pcustoms-icon";
+      vertical-align: inherit; }
   #emoticons_tabs ul li.backup a {
-    background: url(chrome-extension://__MSG_@@extension_id__/images/data-backup-32.png) no-repeat center center; }
+    color: #FF6633;
+    vertical-align: middle;
+    font-size: 19px;
+    text-decoration: none !important;
+    text-align: center; }
+    #emoticons_tabs ul li.backup a:before {
+      content: "";
+      font-family: "pcustoms-icon";
+      vertical-align: inherit; }
   #emoticons_tabs ul li.setting a {
-    background: url(chrome-extension://__MSG_@@extension_id__/images/gear-2-32.png) no-repeat center center; }
+    color: #4682B4;
+    vertical-align: middle;
+    font-size: 19px;
+    text-decoration: none !important;
+    text-align: center; }
+    #emoticons_tabs ul li.setting a:before {
+      content: "";
+      font-family: "pcustoms-icon";
+      vertical-align: inherit; }
   #emoticons_tabs ul li a {
     background-size: 20px !important;
     display: inline-block;
@@ -154,15 +250,59 @@
           background-size: 70px;
           background-repeat: no-repeat;
           width: 90px;
-          height: 90px; }
+          height: 90px;
+          vertical-align: top !important;
+          line-height: 1.5 !important; }
           #emoticon_selecter .tabWrapper.tools div.controls div.item.audio {
-            background-image: url(chrome-extension://__MSG_@@extension_id__/images/note-128.png); }
+            color: #4682B4;
+            vertical-align: middle;
+            font-size: 60px;
+            text-decoration: none !important;
+            text-align: center; }
+            #emoticon_selecter .tabWrapper.tools div.controls div.item.audio:before {
+              content: "";
+              font-family: "pcustoms-icon";
+              vertical-align: inherit; }
           #emoticon_selecter .tabWrapper.tools div.controls div.item.pack {
-            background-image: url(chrome-extension://__MSG_@@extension_id__/images/package-128.png); }
+            color: #FF6633;
+            vertical-align: middle;
+            font-size: 60px;
+            text-decoration: none !important;
+            text-align: center; }
+            #emoticon_selecter .tabWrapper.tools div.controls div.item.pack:before {
+              content: "";
+              font-family: "pcustoms-icon";
+              vertical-align: inherit; }
           #emoticon_selecter .tabWrapper.tools div.controls div.item.sync {
-            background-image: url(chrome-extension://__MSG_@@extension_id__/images/recurring-appointment-128.png); }
-          #emoticon_selecter .tabWrapper.tools div.controls div.item.backup {
-            background-image: url(chrome-extension://__MSG_@@extension_id__/images/cloud-128.png); }
+            color: #2E8B57;
+            vertical-align: middle;
+            font-size: 60px;
+            text-decoration: none !important;
+            text-align: center; }
+            #emoticon_selecter .tabWrapper.tools div.controls div.item.sync:before {
+              content: "";
+              font-family: "pcustoms-icon";
+              vertical-align: inherit; }
+          #emoticon_selecter .tabWrapper.tools div.controls div.item.update {
+            color: #008080;
+            vertical-align: middle;
+            font-size: 60px;
+            text-decoration: none !important;
+            text-align: center; }
+            #emoticon_selecter .tabWrapper.tools div.controls div.item.update:before {
+              content: "";
+              font-family: "pcustoms-icon";
+              vertical-align: inherit; }
+          #emoticon_selecter .tabWrapper.tools div.controls div.item.github {
+            color: #555;
+            vertical-align: middle;
+            font-size: 60px;
+            text-decoration: none !important;
+            text-align: center; }
+            #emoticon_selecter .tabWrapper.tools div.controls div.item.github:before {
+              content: "";
+              font-family: "pcustoms-icon";
+              vertical-align: inherit; }
           #emoticon_selecter .tabWrapper.tools div.controls div.item:not(.none):hover {
             box-shadow: -1px -1px 1px #555;
             position: relative;
@@ -215,8 +355,6 @@
     cursor: default; }
   #emoticon_selecter.pc-gallery #emoticons_scroll_holder {
     display: none; }
-  #emoticon_selecter:not(.pc-gallery) #emoticons_show {
-    display: none; }
 
 #emoticon_selecter_holder {
   width: auto !important; }
@@ -251,11 +389,25 @@
 #filter_tab li.switch.notification {
   cursor: pointer; }
   #filter_tab li.switch.notification a {
-    background-image: url(chrome-extension://__MSG_@@extension_id__/images/sound_on.png);
-    background-position: center center;
-    background-repeat: no-repeat; }
+    vertical-align: middle;
+    font-size: 18px;
+    text-decoration: none !important;
+    text-align: center;
+    line-height: 25px; }
+    #filter_tab li.switch.notification a:before {
+      content: "";
+      font-family: "pcustoms-icon";
+      vertical-align: inherit; }
   #filter_tab li.switch.notification.off a {
-    background-image: url(chrome-extension://__MSG_@@extension_id__/images/sound_off.png); }
+    vertical-align: middle;
+    font-size: 18px;
+    text-decoration: none !important;
+    text-align: center;
+    line-height: 25px; }
+    #filter_tab li.switch.notification.off a:before {
+      content: "";
+      font-family: "pcustoms-icon";
+      vertical-align: inherit; }
 
 #emotiland .panel#uploadPanel #emo-add-field2 {
   color: #FFF;
