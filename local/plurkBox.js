@@ -19,7 +19,7 @@ PlurkBoxAdvancedPlugin.prototype.start = function(){
 		// var liker = $plurks[id].obj.favorers;
 
 		if(time.length == 0){
-			time = $('<a class="posted clock"></a>');
+			time = $('<a class="posted"><i class="icon-pc-clock"></i></a>');
 			time.css({
 				'color' : '#333',
 				'flaot' : 'right',
@@ -27,8 +27,7 @@ PlurkBoxAdvancedPlugin.prototype.start = function(){
 			});
 			time.attr('href', href);
 			time.attr('target', '_blank');
-			time.click(function(){window.open(href)});
-			time.html(countTime($plurks[id].obj.posted)).attr('title', dateString($plurks[id].obj.posted));
+			time.append(countTime($plurks[id].obj.posted)).attr('title', dateString($plurks[id].obj.posted));
 			time.appendTo(info);
 		}
 

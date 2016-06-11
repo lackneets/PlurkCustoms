@@ -10,11 +10,8 @@ z-index : 9999;
 .plurk .tr_info a{
 margin-right: 8px;
 }
-.plurk .tr_info a.posted{
-	display: inline-block;
-	background: url(chrome-extension://__MSG_@@extension_id__/images/time-8-16.png) no-repeat 0px 1px;
-	background-size: 12px;
-	padding-left: 16px; 
+.plurk .tr_info a.posted i{
+	margin-right: .31em;
 }
 
 

@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'pcustoms-icon';
-  src: url('../font/pcustoms-icon.eot?95373046');
-  src: url('../font/pcustoms-icon.eot?95373046#iefix') format('embedded-opentype'),
-       url('../font/pcustoms-icon.woff2?95373046') format('woff2'),
-       url('../font/pcustoms-icon.woff?95373046') format('woff'),
-       url('../font/pcustoms-icon.ttf?95373046') format('truetype'),
-       url('../font/pcustoms-icon.svg?95373046#pcustoms-icon') format('svg');
+  src: url('../font/pcustoms-icon.eot?8590696');
+  src: url('../font/pcustoms-icon.eot?8590696#iefix') format('embedded-opentype'),
+       url('../font/pcustoms-icon.woff2?8590696') format('woff2'),
+       url('../font/pcustoms-icon.woff?8590696') format('woff'),
+       url('../font/pcustoms-icon.ttf?8590696') format('truetype'),
+       url('../font/pcustoms-icon.svg?8590696#pcustoms-icon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'pcustoms-icon';
-    src: url('../font/pcustoms-icon.svg?95373046#pcustoms-icon') format('svg');
+    src: url('../font/pcustoms-icon.svg?8590696#pcustoms-icon') format('svg');
   }
 }
 */
@@ -72,3 +72,4 @@
 .icon-pc-timemachine:before { content: '\e80e'; } /* '' */
 .icon-pc-copy:before { content: '\e80f'; } /* '' */
 .icon-pc-github:before { content: '\e810'; } /* '' */
+.icon-pc-clock:before { content: '\e811'; } /* '' */
