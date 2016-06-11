@@ -22,7 +22,7 @@ var __languages = {
 		"Shift + 點選重新命名 / %s + 點選刪除" : "Shift + Click to rename / %s + Click to delete",
 		"快速找到相關的表情" : "Type to find emoticon quickly",
 		"上傳中..." : "Uploading...",
-		"共 %d 張圖片" : "%d emoticons in your gallery",
+		"共 %d 張圖片" : "%d emos in gallery",
 		"全部消音" : "Mute all",
 		"消音" : "Mute",
 		"解除消音" : "Unmute",
@@ -50,7 +50,7 @@ var __languages = {
 		"以及其他 %d 個人都分享了此訊息": "and other %d people replurked this",
 		"還沒有人轉噗": "Nobody replurks this",
 		"分享了此訊息" : "replurked this",
-		"※請勿自行刪除重新安裝以免圖庫遺失，如需更新請重新啟動瀏覽器" : "** DONOT re-install upon yourself !! Reset browser for updating plugin automatically",
+		"※請勿自行刪除重新安裝以免圖庫遺失，如需更新請重新啟動瀏覽器" : "Reinstall may cause loss, plugin will upgrade automatically",
 		"打包下載所有表情圖案" : "Download all emoticons as zip file",
 		"添加新的表情圖案": "Add new emoticons",
 		"發生錯誤：" : "Error has occurred: ",
@@ -58,14 +58,14 @@ var __languages = {
 		"作者：小耀博士" : "Author: Lackneets (小耀博士)",
 
 		"更換通知音效" : "Change notification sound",
-		"功能開發中，請期待" : "Coming soon!",
+		"檢查更新：將線上的表符儲存到圖庫" : "Check updates: Save online emoticons to gallery",
 		"找不到套件" : "Package Lost",
-		"同步處理線上表情" : "Sync emoticons",
+		"鏡像同步：將線上的表符替換成常用的" : "Sync favorite emoticons to online",
 		"系統正在忙碌中，點一下取消正在進行的工作" : "System is busy, click to stop background process",
 		"開啟圖庫" : "Open gallery",
 		"設定" : "Settings",
 		"工具" : "Utilities",
-		"蒐集者之眼" : "Eye of the Collector",
+		"蒐集者之眼" : "Eye of collector",
 		"最常用的" : "Recent Favorite",
 
 		"外掛設定" : "Extensons Settings",
@@ -80,6 +80,7 @@ var __languages = {
 		"標題計數器" : "Title Counter",
 		"通知音效" : "Notification Sound",
 		"頭像放大鏡" : "Avatar Zoom",
+		"隱藏廣告" : "Hide advertisements",
 
 		"雲端備份到噗浪" : "Cloud backup to Plurk",
 
@@ -87,8 +88,9 @@ var __languages = {
 		"%s + Shift + 點選清除 (不會影響圖庫)" : "%s + Shift + Click to Remove (Won't effect gallery)",
 		"%s + 點選刪除 (不會影響圖庫)" : "%s + Click to Remove (Won't effect gallery)",
 
+		"另存此檔案" : "Save this file",
 		"備份方式：將上方的檔案圖示拖曳至桌面儲存，或點選右鍵另存" : "How to Backup: Drag above file to desktop (or anywhere)",
-		"還原方式：將備份的檔案拖曳到虛線框中" : "How to Restore: Drag backup file to here (dashed square)",
+		"還原方式：將備份的檔案拖曳到虛線框中" : "How to Restore: Drag backup file to HERE",
 		"取代模式：圖庫將被完全刪除並置換成檔案的內容" : "Replace: Restore the while gallery",
 		"合併模式：從備份的檔案中補足圖庫中缺少的圖片" : "Merge: Restore the missing part",
 
@@ -149,21 +151,21 @@ var __languages = {
 		"以及其他 %d 個人都分享了此訊息": "とほかの %d 人がreplurkした",
 		"還沒有人轉噗": "まだreplurkされません",
 		"分享了此訊息" : "がreplurkした",
-		"※請勿自行刪除重新安裝以免圖庫遺失，如需更新請重新啟動瀏覽器" : "※ご自分でリーインストールしないでください、ブラウザーを再起動すると自動更新ができます",
+		"※請勿自行刪除重新安裝以免圖庫遺失，如需更新請重新啟動瀏覽器" : "※勝手にリーインストールはご遠慮ください、アップグレードは自動的に",
 		"打包下載所有表情圖案" : "イモティコンを全部ジップでダウンロード",
 		"添加新的表情圖案": "イモティコンを追加",
 		"發生錯誤：" : "エラーが発生しました：",
 
 		"更換通知音效" : "通知音を変更",
-		"功能開發中，請期待" : "現在開発中です、どうぞお楽しみに",
+		"檢查更新：將線上的表符儲存到圖庫" : "イモティコンをギャラリーにセーブ",
 
-		"同步處理線上表情" : "イモティコンを同期",
+		"鏡像同步：將線上的表符替換成常用的" : "オンラインイモティコンを常用に取替",
 		"系統正在忙碌中，點一下取消正在進行的工作" : "システムがビジー状態です、プロセスを停止するにはクリック",
 		"開啟圖庫" : "ギャラリー",
 		"設定" : "設定",
-		"工具" : "工具",
-		"蒐集者之眼" : "収集者の眼",
-		"最常用的" : "最近常用",
+		"工具" : "ツール",
+		"蒐集者之眼" : "コレクターの目",
+		"最常用的" : "常用",
 		"外掛設定" : "機能設定",
 
 		"線上" : "オンライン",
@@ -180,6 +182,14 @@ var __languages = {
 		"%s + Shift + 點選清除 / Shift + 點選加到圖庫" : "%s + Shift + クリックで削除 / Shift + クリックで追加",
 		"%s + Shift + 點選清除 (不會影響圖庫)" : "%s + Shift + クリックで削除 (ギャラリーに影響しません)",
 		"%s + 點選刪除 (不會影響圖庫)" : "%s + クリックで削除 (ギャラリーに影響しません)",
+
+		"取代模式" : "取替モード",
+		"合併模式" : "合并モード",
+		"另存此檔案" : "このバックアップファイルを保存して",
+		"備份方式：將上方的檔案圖示拖曳至桌面儲存，或點選右鍵另存" : "このバックアップファイルを保存して",
+		"還原方式：將備份的檔案拖曳到虛線框中" : "ここにバックアップファイルをドロップ",
+		"取代模式：圖庫將被完全刪除並置換成檔案的內容" : "取替モード: ギャラリーを取り替える",
+		"合併模式：從備份的檔案中補足圖庫中缺少的圖片" : "合并モード: いなくなったイモティコンを取り戻す",
 
 
 		"" : "",
