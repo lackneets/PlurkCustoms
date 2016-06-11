@@ -7,12 +7,6 @@ function shortcut(gallery){
 			renderUI(this);
 		});
 
-		function getOverlay(){
-			return $('<div/>', {
-				class: 'simpleoverlay'
-			}).appendTo(document.body);
-		}
-
 		function renderUI(container){
 			$('<span/>', {class: 'plurkcustoms_shortcut',
 				html: [			
