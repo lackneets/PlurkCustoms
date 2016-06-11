@@ -1,12 +1,4 @@
-﻿
-.simpleoverlay{
-background: url(chrome-extension://__MSG_@@extension_id__/images/tweed.png);
-opacity: 0.5;
-position:fixed;
-top:0; right:0; bottom:0; left:0;
-z-index : 9999;
-}
-.plurk:not(:hover):not(.plurk_box) .tr_info{display:none !important;}
+﻿.plurk:not(:hover):not(.plurk_box) .tr_info{display:none !important;}
 .plurk .tr_info a{
 margin-right: 8px;
 }
@@ -14,7 +6,7 @@ margin-right: 8px;
 	margin-right: .31em;
 }
 
-
+i
 %smallIcon{
 	background-size: 19px !important;
 	cursor: pointer;
