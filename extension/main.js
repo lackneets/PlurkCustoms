@@ -40,8 +40,9 @@ function b64_to_utf8( str ) {
 //Start PlurkCustoms
 
 var emotiland;
-var storage ;
-var gallery ;
+var storage;
+var gallery;
+var GLOBAL;
 
 (function($){
 
@@ -53,13 +54,29 @@ var gallery ;
 	    });
 	};
 
+	getLocal('GLOBAL', function(_GLOBAL){
 
+		if(window.frameElement && window.frameElement.nodeName == "IFRAME"){
+			if(window.location.toString().match('EmoticonManager')){
+				console.info('PlurkCustoms: 非河道模式運作');
+				return runFallbackMode();	
+			}else{
+				return false;
+			}
+		}
 
-	getLocal('GLOBAL', function(GLOBAL){
+		if(! _GLOBAL ){
+			console.error('PlurkCustoms: 無法運作');
+			return false;
+		} 
+
+		GLOBAL = _GLOBAL;
+		sessionStorage.GLOBAL = JSON.stringify(GLOBAL);
+
 		token = GLOBAL.session_user.token;
 		user_id = GLOBAL.session_user.id;
 
-		emotiland 	= new PlurkEmotiland();
+		emotiland 	= new PlurkEmotiland(GLOBAL);
 		storage 	= new StorageAdapter(emotiland);
 		gallery 	= new Gallery(storage);
 
@@ -84,6 +101,26 @@ var gallery ;
 		packer(gallery);
 		shortcut(gallery);
 	});
+	
+	// 非河道模式運作
+	function runFallbackMode(){
+		try{
+			GLOBAL = _GLOBAL = JSON.parse(sessionStorage.GLOBAL);
+		}catch(e){
+			console.error('PlurkCustoms: 無法在非河道模式運作');
+			return false;
+		}
+
+		token = GLOBAL.session_user.token;
+		user_id = GLOBAL.session_user.id;
+
+		emotiland 	= new PlurkEmotiland(GLOBAL);
+		storage 	= new StorageAdapter(emotiland);
+		gallery 	= new Gallery(storage);
+
+		return true;
+
+	}
 
 	//RPlurkSmiley 版面
 	$('li.emoticon_selecter#karma_0').livequery(function(){
