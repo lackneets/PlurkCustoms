@@ -11,22 +11,10 @@ z-index : 9999;
 margin-right: 8px;
 }
 .plurk .tr_info a.posted{
-display: inline-block;
-background: url(chrome-extension://__MSG_@@extension_id__/images/time-8-16.png) no-repeat 0px 1px;
-background-size: 12px;
-padding-left: 16px; 
-}
-.plurk .tr_info a.likes{
-display: inline-block;
-background: url(chrome-extension://__MSG_@@extension_id__/images/facebook-like-16.png) no-repeat 0px 1px;
-background-size: 12px;
-padding-left: 16px; 
-}
-.plurk .tr_info a.replurk{
-display: inline-block;
-background: url(chrome-extension://__MSG_@@extension_id__/images/sharethis-3-16.png) no-repeat 0px 1px;
-background-size: 12px;
-padding-left: 16px; 
+	display: inline-block;
+	background: url(chrome-extension://__MSG_@@extension_id__/images/time-8-16.png) no-repeat 0px 1px;
+	background-size: 12px;
+	padding-left: 16px; 
 }
 
 

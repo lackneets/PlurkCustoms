@@ -15,8 +15,8 @@ PlurkBoxAdvancedPlugin.prototype.start = function(){
 		var href = get_permalink(id.match(/\d+/));
 		var info = div.find('.td_info').show(); div.find('.tr_info').show();
 
-		var replurkers = $plurks[id].obj.replurkers;
-		var liker = $plurks[id].obj.favorers;
+		// var replurkers = $plurks[id].obj.replurkers;
+		// var liker = $plurks[id].obj.favorers;
 
 		if(time.length == 0){
 			time = $('<a class="posted clock"></a>');
@@ -32,28 +32,6 @@ PlurkBoxAdvancedPlugin.prototype.start = function(){
 			time.appendTo(info);
 		}
 
-		// if(replurkers.length > 0 && div.find('.replurk').length == 0){
-		// 	var replurkers_list = "";
-		// 	var replurkers_more = 0;
-		// 	for(var i in replurkers){
-		// 		if((name = getDisplayname(replurkers[i]))) replurkers_list += name + "\n";
-		// 		else replurkers_more++;
-		// 	}
-		// 	replurkers_list = replurkers_list.replace(/\n$/, '');
-
-		// 	if(replurkers_list == "") replurkers_list = __("%d 個人轉噗").replace('%d', replurkers_more);
-		// 	else if(replurkers_more) replurkers_list += "\n" + __("以及其他 %d 個人都分享了此訊息").replace('%d', replurkers_more);
-		// 	else replurkers_list += "\n" + __("分享了此訊息");
-		// 	var replurk_info = $(_('<a class="replurk" style="cursor:default; color:#333;" >'+__('%d 個轉噗')+'</a>').replace('%d', replurkers.length)).attr('title', replurkers_list);	
-
-		// 	replurk_info.appendTo(info);		
-		// }
-
-		// if(liker.length > 0 && div.find('.likes').length == 0){
-		// 	var liker_list = "";
-		// 	var like_info = $(_('<a class="likes" style="cursor:default; color:#333;" >'+__('%d 個讚')+'</a>').replace('%d', liker.length));	
-		// 	like_info.appendTo(info);
-		// }	
 	});	
 }
 PlurkBoxAdvancedPlugin.prototype.stop = function(){
