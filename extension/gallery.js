@@ -121,7 +121,7 @@ Gallery.prototype.registerTab = function(className, opener, label){
 	var self = this;
 
 	$("#emoticons_tabs ul:first").livequery(function(){
-		console.log('registerTab', className, label);
+		console.info('產生分頁', className, label);
 		if(self.tabs[className]){
 			return false;
 		}
@@ -368,9 +368,7 @@ Gallery.prototype.open = function(className, inputTarget){
 	// console.log(inputTarget,this.lastInputFocused)
 	$('#emoticon_selecter .tabWrapper').hide();
 	$('#emoticons_tabs').livequery(function(){
-		console.log('open:live', className);
 		setTimeout(function(){
-			console.log('open:click', className);
 			self.switchTab(className);
 		}, 150);
 	})
@@ -618,6 +616,7 @@ Gallery.prototype.showToolsTab = function(wrapper, loading){
 				$('<div>', { class: 'item update',
 					attr: { title: __('檢查更新：將線上的表符儲存到圖庫') },
 					click: function(){
+						self.storage.online.cache = [];
 						self.storage.online.getStorageLimit(function(limit){
 							console.info('手動檢查更新');
 							console.info('表符上限為', limit, '將縮減為', limit - 5, '以確保可以上傳新表符');

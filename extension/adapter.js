@@ -1,5 +1,13 @@
 var StorageAdapter = function(onlineStorage){
 	this.online = onlineStorage;
+
+	setInterval(function(){
+		if(sessionStorage._PlurkCustomsFlushCache){
+			sessionStorage.removeItem('_PlurkCustomsFlushCache');
+			this.cache = null;
+			console.info('StorageAdapter', '收到刷新快取請求廣播');
+		}
+	}.bind(this), 200);
 }
 StorageAdapter.prototype.online = null;
 StorageAdapter.prototype.handup = false;
@@ -7,6 +15,7 @@ StorageAdapter.prototype.cache = null;
 
 StorageAdapter.prototype.flush = function(){
 	this.cache = null;
+	sessionStorage._PlurkCustomsFlushCache = true; // 廣播
 }
 StorageAdapter.prototype.sendExtensionRequest = function(obj, callback){
 	if(this.handup) return false;
@@ -282,6 +291,9 @@ PlurkEmotiland.prototype.getDefaultSmiles = function(callback){
 }
 
 PlurkEmotiland.prototype.isPremium = function(callback){
+	if(GLOBAL){
+		return callback && callback(GLOBAL.page_user.premium);
+	}
 	getLocal('GLOBAL', function(GLOBAL){
 		callback && callback(GLOBAL.page_user.premium);
 	});	

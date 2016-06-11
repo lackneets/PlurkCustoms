@@ -1,31 +1,26 @@
 //監控自訂表情上傳
 
-//$("#emo-add-field2").livequery(function(){ $(this).hide().contents().hide(); })
-$("#emo-add-field2 img#emo-add-preview").livequery('load', function(){
-	var img = this;
-	var url = this.src; 
-	var keyword = prompt(__("請為這張圖片取一個名字"), __("表情"));
-	$(this).parent().hide();
-	if(keyword && keyword.replace(/\s*/, '') != ""){
-		gallery.storage.saveEmotion(url, keyword, function(emotions){
-			reset();
-		});
-	}else{
-		reset();
-	}
-	function reset(){
-		$('#emo-file-form')[0].reset();
-		img.src = null;
-	}
-	$("#emo-add-field2").hide();
-});
+(function(){
 
-/*$.wait(".error-msg.emo-file-error[style*='visibility: visible']", function(){
-	$(".error-msg.emo-file-error").css('visibility', 'hidden');
-	alert($(".error-msg.emo-file-error").text());
-}, true);
+  $(document).on('click', '#emo-panel-add', function(){
+    newEmoticonKeyword = $('#emo-panel-kw-editor').val() || __("表情");
+    if(newEmoticonKeyword && newEmoticonKeyword.replace(/\s*/, '') != ""){
+      gallery.storage.saveEmotion($('#emo-panel-emo').attr('src'), newEmoticonKeyword, function(emotions){
+        console.info('「'+newEmoticonKeyword+'」已儲存到噗浪卡卡圖庫');
+      });
+    }
+  });
 
-$.wait(".error-msg.emo-url-error[style*='visibility: visible']", function(){
-	$(".error-msg.emo-url-error").css('visibility', 'hidden');
-	alert($(".error-msg.emo-url-error").text());
-}, true);*/
+  $(document).on('click', '.uploader #emo-panel-add', function(){
+    setTimeout(function(){
+      emotiland.cache = [];
+      emotiland.getStorageLimit(function(limit){
+        console.info('檢查新表符');
+        gallery.reduceOnlineEmoticons(limit - 5);
+      });
+    }, 1500);
+  });
+
+
+
+})();

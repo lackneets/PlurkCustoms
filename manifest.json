@@ -45,6 +45,7 @@
          "local/portal.js"
       	
       ],
+      "all_frames": true,
       "matches": [ "http://www.plurk.com/*", "https://www.plurk.com/*" ]
    } ],
    "web_accessible_resources" : ["manifest.json","*.js", "*.css", "*.mp3", "*.css", "*.*"],
@@ -56,5 +57,5 @@
    "name": "PlurkCustoms 噗浪卡卡圖庫",
    "permissions": [ "storage", "http://*.plurk.com/*", "https://*.plurk.com/*", "bookmarks", "contextMenus", "tabs" ],
    "update_url": "http://clients2.google.com/service/update2/crx",
-   "version": "1.7.9.0"
+   "version": "1.7.9.1"
 }
