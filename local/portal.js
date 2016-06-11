@@ -22,9 +22,9 @@ localScript(function(args){
 });
 
 loadScript('local/loader.js');
-localScript('var _jQuery = jQuery.noConflict(true); ');
+localScript('if(typeof jQuery == "function") { var _jQuery = jQuery.noConflict(true); }');
 loadScript('js/jquery.min.js');
-localScript('var $ = jQuery.noConflict(true); jQuery = _jQuery;');
+localScript('if(typeof _jQuery == "function") { var $ = jQuery.noConflict(true);  jQuery = _jQuery; }');
 loadScript('js/usingjQuery.js');
 loadScript('js/jquery.wait.js');
 loadScript('js/jquery.livequery.js');

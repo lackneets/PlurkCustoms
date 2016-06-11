@@ -56,6 +56,7 @@ function LocalVariableListener(variable){
 	if(LocalVariableListener.listeners[variable]){
 		return LocalVariableListener.listeners[variable];
 	}
+	this.hash = Number(new Date).toString(36).toUpperCase();
 	this.variable = variable;
 	this.subscribe();
 	LocalVariableListener.listeners[variable] = this
@@ -65,19 +66,19 @@ LocalVariableListener.prototype.subscribe = function(){
 	localScript(function(args){
 		setInterval(function(){
 			try{
-				sessionStorage.setItem('_variable_listener_' + args.variable, JSON.stringify(eval(args.variable)));
+				sessionStorage.setItem('_variable_listener_' + args.hash + '_' + args.variable, JSON.stringify(eval(args.variable)));
 			}catch(e){
-				sessionStorage.setItem('_variable_listener_' + args.variable, JSON.stringify(null));
+				sessionStorage.setItem('_variable_listener_' + args.hash + '_' + args.variable, JSON.stringify(null));
 			}
 		}, 100);
-	}, {variable: this.variable});
+	}, {variable: this.variable, hash: this.hash});
 
 }
 LocalVariableListener.prototype.listen = function(callback){
 	setTimeout(function(){
 		var value;
 		try{
-			value = JSON.parse(sessionStorage.getItem('_variable_listener_' + this.variable));
+			value = JSON.parse(sessionStorage.getItem('_variable_listener_' + this.hash + '_' + this.variable));
 		}catch(e){
 			value = null;
 		}
