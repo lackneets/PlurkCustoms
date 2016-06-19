@@ -45,7 +45,7 @@
 			if(request.loadEmotions){
 				
 				loadEmotions(function(emotions){
-					console.log('sendResponse(emotions)', emotions);
+					console.log('sendResponse(emotions)');
 					sendResponse(emotions);
 				});
 			}
@@ -69,7 +69,12 @@
 	});
 	
 	function saveEmotion(url, keyword, callback){
+		var urlMatch = url.match(/plurk\.com\/([0-9a-zA-Z]+)/);
 		loadEmotions(function(emotions){
+			if(!(urlMatch && urlMatch[1])){
+				console.warn('Emoticon not saved, invalid url', url);
+				return callback && callback(emotions);
+			}
 			var hash_id = url.match(/plurk\.com\/([0-9a-zA-Z]+)/)[1];
 			emotion = {keyword: keyword, url: url, hash_id: hash_id};
 			emotions.push(emotion);
@@ -210,7 +215,7 @@
 							//相同名稱衝突
 							if(emotions[e].keyword == stored_emotions[s].keyword){ //conflict
 								exist = true; 
-								console.log('remove conflict: ', emotions[e].keyword, emotions[e].hash_id, stored_emotions[s].keyword, stored_emotions[s].hash_id);
+								// console.log('remove conflict: ', emotions[e].keyword, emotions[e].hash_id, stored_emotions[s].keyword, stored_emotions[s].hash_id);
 								if(emotions[e].hash_id == stored_emotions[s].hash_id){	// 完全符合
 									stored_emotions[s] = emotions[e];
 									//if(type == "onlineMerge") stored_emotions[s].alive = true; // 標記為在線上	
