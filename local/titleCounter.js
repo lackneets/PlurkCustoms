@@ -67,9 +67,9 @@ TitleCounterPlugin.prototype.start = function(){
   var count_my;
   var count_responded;
 
-  var title           = document.title;
-  var titleDetail     = document.title;
-  var defaultTitle    = document.title;
+  var title           = document.getElementById('page_title').innerHTML || document.title;
+  var titleDetail     = document.getElementById('page_title').innerHTML || document.title;
+  var defaultTitle    = document.getElementById('page_title').innerHTML || document.title;
   var faviconCounter  = new FaviconCounter;
 
   this.defaultTitle = defaultTitle;

@@ -151,7 +151,6 @@ class MuteAllButton{
       success: dataJSON => {
 
         var data = eval('(' + dataJSON + ')');
-        console.log(data)
         for(var i=0; i < data.unread_plurks.length; i++) if(data.unread_plurks[i].owner_id == this.settings.user_id || data.unread_plurks[i].plurk_type > 1) { data.unread_plurks.splice(i,1); i--; }
 
         var total = data.unread_plurks.length;
