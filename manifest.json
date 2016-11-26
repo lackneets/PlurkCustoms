@@ -2,27 +2,27 @@
    "manifest_version": 2,
    "background": {"page": "background.html"},
    "content_scripts": [ {
-      "css": [ 
+      "css": [
          "fontello/css/pcustoms-icon-embedded.css",
-         "css/emotion_selector.css", 
+         "css/emotion_selector.css",
          "css/ui.css",
          "css/onoffswitch.css",
          "css/uploader.css"
       ],
-      "js": [ 
-      	"languages.js", 
+      "js": [
+      	"languages.js",
 
          "js/keycode.js",
          "js/jszip.js",
          "js/jszip-inflate.js",
-      	"js/jquery.min.js", 
-         "js/jquery.wait.js", 
-      	"js/jquery.livequery.js", 
-      	"js/jquery.event-filter.min.js", 
-      	"js/md5.js", 
+      	"js/jquery.min.js",
+         "js/jquery.wait.js",
+      	"js/jquery.livequery.js",
+      	"js/jquery.event-filter.min.js",
+      	"js/md5.js",
       	"js/jquery.draggable.js",
-         "lib/underscore-min.js", 
-         "lib/nprogress.js", 
+         "lib/underscore-min.js",
+         "lib/nprogress.js",
          "lib/dropzone.js",
 
          "local/loader.js",
@@ -43,9 +43,9 @@
          "extension/muteAll.js",
          "extension/packer.js",
          "local/portal.js"
-      	
+
       ],
-      "all_frames": true,
+      "all_frames": false,
       "matches": [ "http://www.plurk.com/*", "https://www.plurk.com/*" ]
    } ],
    "web_accessible_resources" : ["manifest.json","*.js", "*.css", "*.mp3", "*.css", "*.*"],
@@ -57,5 +57,5 @@
    "name": "PlurkCustoms 噗浪卡卡圖庫",
    "permissions": [ "storage", "http://*.plurk.com/*", "https://*.plurk.com/*", "bookmarks", "contextMenus", "tabs" ],
    "update_url": "http://clients2.google.com/service/update2/crx",
-   "version": "1.7.9.2"
+   "version": "1.7.9.3"
 }

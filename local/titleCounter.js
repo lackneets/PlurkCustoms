@@ -50,7 +50,7 @@ class FaviconCounter {
     this.canvas.height = this.img.naturalHeight;
     this.ctx.drawImage(this.img, 0, 0, this.img.naturalWidth*0.7, this.img.naturalHeight*0.7);
     this.ctx.font = "bold 16px Arial";
-    this.ctx.fillStyle = 'red';
+    this.ctx.fillStyle = '#EA3730';
     this.ctx.fillText(txt, this.img.naturalWidth-this.ctx.measureText(txt).width, this.img.naturalWidth);
     this.favicon.href = this.canvas.toDataURL('image/png');
   }

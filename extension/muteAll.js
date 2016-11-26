@@ -78,14 +78,14 @@ class MuteAllButton{
 
   mutePlurks(ids){
 
-    ids.sort(function(a,b){return b-a});
+    ids.sort((a,b) => b-a);
 
     var progress = 0;
     var total = ids.length;
     var muted = 0;
 
     ids.forEach((id, i) => {
-      setTimeout(function() {
+      setTimeout(() => {
         $.ajax({
           url: "//www.plurk.com/TimeLine/setMutePlurk",
           data: {
