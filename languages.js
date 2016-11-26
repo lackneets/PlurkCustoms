@@ -2,7 +2,7 @@ var __languages = {
 	"en" :{
 		"【需要更多存取權限】\n\n請您協助改善 PlurkCustoms 並支持我們的雲端社群發展計畫。此擴充套件會紀錄您噗浪的個人公開資料、同時自動回報版本號以及錯誤\n\n(PlurkCustoms不會紀錄您的密碼)\n\n您是否同意並繼續使用？您拒絕的話此擴充套件將不會繼續執行，並前往移除"
 			: "NEED MORE PERMISSION!!\n\nPlease help PlurkCustoms to improve and support our cloud social project. We need to track your public data from your plurk, also for reporting version, errors. \n\n(WE WON'T LOG PASSWORD)\n\nDo you agree us to access your data and continue? or go to uninstallation page",
-		"未讀 %d"	: "%d Unread",
+		"未 %d"	: "%d Unread",
 		"我 %d"		: "%d My",
 		"回 %d"		: "%d Responded ",
 		"私 %d"		: "%d Private",
@@ -10,7 +10,7 @@ var __languages = {
 		"點選以蒐集這張圖片" : "Click this emoticon to collect",
 		"瀏覽以前的噗"	: "Browse plurks before specified date",
 		"時光機" : "TimeMachine",
-		"回朔到 YYYY/M/D 之前" : "Go back to the day before YYYY/M/D ",	
+		"回朔到 YYYY/M/D 之前" : "Go back to the day before YYYY/M/D ",
 		"開啟/關閉 通知音效" : "Switch On/Off notification sound",
 		"請為這張圖片取一個名字" : "Give this emoticon a name",
 		"這個不是噗浪自訂表情圖案" : "This is not a plurk emoticon",
@@ -54,7 +54,7 @@ var __languages = {
 		"打包下載所有表情圖案" : "Download all emoticons as zip file",
 		"添加新的表情圖案": "Add new emoticons",
 		"發生錯誤：" : "Error has occurred: ",
-		"無法連線到圖庫，請立即重新整理頁面看看，可能有版本更新，繼續將無法正常操作" : "OOPS! Cannot connect to Gallery. Please try to refresh your browser immediately.",	
+		"無法連線到圖庫，請立即重新整理頁面看看，可能有版本更新，繼續將無法正常操作" : "OOPS! Cannot connect to Gallery. Please try to refresh your browser immediately.",
 		"作者：小耀博士" : "Author: Lackneets (小耀博士)",
 
 		"更換通知音效" : "Change notification sound",
@@ -101,8 +101,8 @@ var __languages = {
 			"%s 小時前" : "%s hours ago",
 			"昨天" : "Yesterday",
 			"%s 天前" : "%s days ago",
-			"%s 星期前" : "%s weeks ago",	
-			
+			"%s 星期前" : "%s weeks ago",
+
 	},
 	"zh_Hant_HK" :{
 		"消音" : "收聲",
@@ -114,7 +114,7 @@ var __languages = {
 		"全部消音" : "小博士暗黑無限破！",
 	},
 	"ja" :{
-		"未讀 %d"	: "未読 %d",
+		"未 %d"	: "未読 %d",
 		"我 %d"		: "マイ %d",
 		"回 %d"		: "返信 %d",
 		"私 %d"		: "私有 %d",
@@ -122,7 +122,7 @@ var __languages = {
 		"點選以蒐集這張圖片" : "このイモティコンを追加する",
 		"瀏覽以前的噗"	: "昔の件を表示",
 		"時光機" : "タイムマシン ",
-		"回朔到 YYYY/M/D 之前" : "YYYY/M/D 以前の件を表示",	
+		"回朔到 YYYY/M/D 之前" : "YYYY/M/D 以前の件を表示",
 		"開啟/關閉 通知音效" : "通知音 オン/オフ ",
 		"請為這張圖片取一個名字" : "このイモティコンを命名して",
 		"這個不是噗浪自訂表情圖案" : "これはplurkのイモティコンじゃありません",
@@ -204,7 +204,7 @@ var __languages = {
 		"" : "",
 
 
-			
+
 			"早上" : "午前",
 			"下午" : "午後",
 			"剛剛" : "只今",
@@ -222,15 +222,15 @@ var __languages = {
 //if(typeof LANG == 'undefined') LANG = 'en';
 
 function __(txt){
-	
+
 	if(typeof LANG == 'undefined' || typeof __languages[LANG] == 'undefined') return txt;
-	
+
 	if(LANG == 'zh_Hant_HK' && typeof __languages[LANG][txt] == 'undefined') return txt;
 	if(LANG == 'zh_CN' && typeof __languages[LANG][txt] == 'undefined') return txt;
 	if(LANG == 'zh_Hant'&& typeof __languages[LANG][txt] == 'undefined') return txt;
-	
+
 	if(typeof __languages[LANG][txt] == 'string') return __languages[LANG][txt];
 	if(typeof __languages['en'][txt] == 'string') return __languages['en'][txt];
-	
+
 	return txt;
 }
