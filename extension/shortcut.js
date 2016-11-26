@@ -9,13 +9,13 @@ function shortcut(gallery){
 
 		function renderUI(container){
 			$('<span/>', {class: 'plurkcustoms_shortcut',
-				html: [			
+				html: [
 					$('<a>', {
 						class: 'shortcut addEmoticons',
 						attr: {title: __('添加新的表情圖案')},
 						click: showUploadPanel
-					}),			
-							
+					}),
+
 					$('<a>', {
 						class: 'shortcut setting',
 						attr: {title: __('外掛設定')},
@@ -24,7 +24,7 @@ function shortcut(gallery){
 							return false;
 						}
 					}),
-						
+
 					$('<a>', {
 						class: 'shortcut gallery',
 						attr: {title: __('開啟圖庫')},
@@ -33,26 +33,23 @@ function shortcut(gallery){
 							return false;
 						}
 					})
-	
+
 				]
 			}).appendTo(container)
 
 		}
 
 		function showUploadPanel(event){
-			localScript(['(new GB_Window({',
-			'    caption: \"\",',
-			'    show_close_img: false,',
-			'    overlay_click_close: true,',
-			'    width: 660,',
-			'    height: 444,',
-			'    fullscreen: false,',
-			'    use_fx: false,',
-			'    callback_fn: function() {',
-			'        EmoticonsMy.reloadEverything()',
-			'    }',
-			'})).show(\"/EmoticonManager2\");'].join('\n'));
-			return false;		
+			localScript(`(new PopWindow({
+		    url: "/EmoticonManager2",
+		    width: 660,
+		    height: 444,
+		    onColse: function() {
+		       EmoticonsMy.reloadEverything()
+		    }
+			})).show();
+			Emoticons.forceHide();`);
+			return false;
 		}
 
 		function findCurrentInput(element){
@@ -69,6 +66,6 @@ function shortcut(gallery){
 			localScript("Emoticons.toggle('"+id+"');");
 			gallery.openGallery();
 			$("#emoticon_selecter").css({'top': $(this).offset().top+30, 'left': $(this).offset().left});
-			return false;			
-		}	
+			return false;
+		}
 }
