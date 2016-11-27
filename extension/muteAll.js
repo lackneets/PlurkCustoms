@@ -10,7 +10,7 @@ class MuteAllButton{
       MuteAllButton.instance = this;
     }
 
-    this.settings = {};
+    this.settings = { user_id: 99999 };
     this.busy = false;
     this.init();
 
@@ -18,6 +18,10 @@ class MuteAllButton{
   }
 
   init(){
+
+    if(window.frameElement && window.frameElement.nodeName == "IFRAME"){
+      return false;
+    }
 
     try{
       this.settings = JSON.parse(document.head.innerHTML.match(/SETTINGS\s*=\s*([^\n\r]+);/)[1]);

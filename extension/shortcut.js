@@ -47,8 +47,7 @@ function shortcut(gallery){
 		    onColse: function() {
 		       EmoticonsMy.reloadEverything()
 		    }
-			})).show();
-			Emoticons.forceHide();`);
+			})).show();`);
 			return false;
 		}
 
