@@ -9,14 +9,14 @@ function packer(gallery){
 	$(function(){
 		$("#plurk_form .icons_holder .plurkcustoms_shortcut").livequery(function(){
 			//if($(this).find('img.downloadEmoticons').length > 0) return;
-			launchButton = $('<a/>',{
-				class: 'downloadEmoticons shortcut',
-				attr: {title: __('打包下載所有表情圖案')},
-				click: function(e){
-					downloadEmoticons();
-					return false;
-				}
-			}).prependTo(this);
+			// launchButton = $('<a/>',{
+			// 	class: 'downloadEmoticons shortcut',
+			// 	attr: {title: __('打包下載所有表情圖案')},
+			// 	click: function(e){
+			// 		downloadEmoticons();
+			// 		return false;
+			// 	}
+			// }).prependTo(this);
 
 			cancelButton = $('<a/>',{
 				class: 'busy packer shortcut',
@@ -25,7 +25,7 @@ function packer(gallery){
 					cancelDownload();
 					return false;
 				}
-			}).hide().prependTo(this);			
+			}).hide().prependTo(this);
 		})
 	});
 
@@ -96,7 +96,7 @@ function packer(gallery){
 		busy = true;
 		cancelButton.fadeIn();
 
-		NProgress.configure({ 
+		NProgress.configure({
 			minimum: 0.005 ,
 			template: '<div class="bar orange" role="bar"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>'
 		});
@@ -109,7 +109,7 @@ function packer(gallery){
 					var json = JSON.stringify(emoticons);
 					//var b64 = utf8_to_b64( json );
 					zip.file('backup.txt', json);
-					
+
 					var toDownload = emoticons.length;
 					var downloaded = 0
 					var progress = 0;
@@ -145,7 +145,7 @@ function packer(gallery){
 									if(base64 != null){ // 自動忽略失敗
 										folder.file(fileneme + '.' + ext, base64, {binary: true});
 									}
-									
+
 									if(toDownload == downloaded){ // 完成
 										packfile();
 										NProgress.set(1.0);
@@ -167,7 +167,7 @@ function packer(gallery){
 					alert(__('發生錯誤：') + e);
 					busy = false;
 				}
-			})		
+			})
 		}catch(e){
 			alert(__('發生錯誤：') + e);
 			busy = false;

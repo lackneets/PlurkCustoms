@@ -30,7 +30,7 @@ Gallery.prototype.plugins = {};
 
 Gallery.prototype.currentClassName = '';
 
-Gallery.prototype.init = function() { 
+Gallery.prototype.init = function() {
 	var	self = this;
 	$("#main_poster .smily_holder img").livequery("click",function(){
 		self.lastInputFocused = document.getElementById('input_big');
@@ -38,14 +38,14 @@ Gallery.prototype.init = function() {
 	$(".mini_form .smily_holder img").livequery("click",function(){
 		self.lastInputFocused = document.getElementById('input_small');
 	});
-	
+
 	$(".cmp_emoticon_on, .cmp_emoticon_off, #main_poster .emoticon_selecter_img_on, #main_poster .emoticon_selecter_img_off").livequery("click",function(){
 		self.lastInputFocused = document.getElementById('input_big');
 	});
 	$(".cmp_emoticon_mini_on, .cmp_emoticon_mini_off, .mini_form .emoticon_selecter_img_on, .mini_form .emoticon_selecter_img_off").livequery("click",function(){
 		self.lastInputFocused = document.getElementById('input_small');
 	});
-	
+
 	$(".private_plurk_form .smily_holder img").livequery("click",function(){
 		self.lastInputFocused = document.getElementById('input_big_private');
 	});
@@ -91,7 +91,7 @@ Gallery.prototype.getPanel = function(){
 			$('#emoticons_show').hide();
 		});
 		$(panel).css({'position': 'relative'});
-		$(panel).click(function(e){ 
+		$(panel).click(function(e){
 			e.stopPropagation();
 		});
 		self.galleryTab = panel;
@@ -143,7 +143,7 @@ Gallery.prototype.registerTab = function(className, opener, label){
 				if(wrapper.parent().length == 0){
 					wrapper.appendTo('#emoticons_show');
 				}
-				
+
 				//wrapper.show();
 				//self.getPanel();
 				$(this).siblings().removeClass('current').end().addClass('current');
@@ -161,7 +161,7 @@ Gallery.prototype.registerTab = function(className, opener, label){
 		}).appendTo(this);
 	});
 }
-Gallery.prototype.operateEmoticonClick = function(smile, wrapper, callback) { 
+Gallery.prototype.operateEmoticonClick = function(smile, wrapper, callback) {
 
 	var self = this;
 
@@ -188,11 +188,11 @@ Gallery.prototype.operateEmoticonClick = function(smile, wrapper, callback) {
 	this.getRemovableEmoticons(function(removable){
 		wrapper.addClass('uploading');
 
-		removable = _.reject(removable, function(e){ 
-			return _.contains(self.emotionUsed, e.keyword); 
+		removable = _.reject(removable, function(e){
+			return _.contains(self.emotionUsed, e.keyword);
 		});
 
-		self.storage.online.getStorageLimit(function(limit){ 
+		self.storage.online.getStorageLimit(function(limit){
 			// 如果 > 上限 - 5 就移除一個表符
 			if(removable.length + self.emotionUsed.length > limit - 5){
 				var toRemove = removable.pop();
@@ -202,7 +202,7 @@ Gallery.prototype.operateEmoticonClick = function(smile, wrapper, callback) {
 			}else{
 				wrapper.addClass('uploading');
 				uploadAndUse(keyword, url, function(){ wrapper.removeClass('uploading'); });
-			}			
+			}
 		});
 	});
 
@@ -233,13 +233,13 @@ Gallery.prototype.useEmoticon = function(keyword, backward){
 	if ( !this.lastInputFocused  ) this.lastInputFocused = document.getElementById('input_big');
 
 	var s = this.lastInputFocused.selectionStart;
-	
+
 	if(backward) this.lastInputFocused.value = this.lastInputFocused.value.substr(0, this.lastInputFocused.selectionStart-backward) + this.lastInputFocused.value.substr(this.lastInputFocused.selectionStart, this.lastInputFocused.value.length)
 	if(backward) s = s-backward;
 	var t = this.lastInputFocused.value;
 	var k = "[" + keyword + "]";
 	var x = t.substr(0, s) + k + t.substr(s, t.length);
-	
+
 	this.lastInputFocused.value = x;
 	this.lastInputFocused.setSelectionRange(s + k.length, s + k.length);
 }
@@ -247,15 +247,15 @@ Gallery.prototype.useDefaultSmile = function(keyword, backward){
 	var self = this;
 	if(!backward) backward = 0;
 	if ( !this.lastInputFocused  ) this.lastInputFocused = document.getElementById('input_big');
-	
+
 	var s = this.lastInputFocused.selectionStart;
-	
+
 	if(backward) this.lastInputFocused.value = this.lastInputFocused.value.substr(0, this.lastInputFocused.selectionStart-backward) + this.lastInputFocused.value.substr(this.lastInputFocused.selectionStart, this.lastInputFocused.value.length)
 	if(backward) s = s-backward;
 	var t = this.lastInputFocused.value;
 	var k = keyword ;
 	var x = t.substr(0, s) + k + t.substr(s, t.length);
-	
+
 	this.lastInputFocused.value = x;
 	this.lastInputFocused.setSelectionRange(s + k.length, s + k.length);
 }
@@ -271,12 +271,12 @@ Gallery.prototype.syncFavorites = function(){
 		return false;
 	}
 
-	NProgress.configure({ 
+	NProgress.configure({
 		minimum: 0.005 ,
 		template: '<div class="bar sync" role="bar"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>'
 	});
-	NProgress.set(0.0);	
-	NProgress.start();	
+	NProgress.set(0.0);
+	NProgress.start();
 
 
 	self.storage.online.getOnlineEmoticons(function(onlineEmoticons) {
@@ -318,14 +318,14 @@ Gallery.prototype.syncFavorites = function(){
 					setTimeout(function(){
 						self.storage.online.removeEmotion(emo.url, proceed);
 					}, i*120);
-				});			
+				});
 			}
 			function uploadPhase(){
 				_.each(toUpload, function(emo, i){
 					setTimeout(function(){
 						self.storage.online.addEmotion(emo.url, emo.keyword, proceed);
 					}, i*120);
-				});			
+				});
 			}
 
 			function proceed(){
@@ -392,7 +392,7 @@ Gallery.prototype.showGalleryDefault = function(wrapper, loading){
 			var emoWrapper = $(event.currentTarget).find('a');
 			var keyword = emoticon.keyword;
 			var url 	= emoticon.url;
-			self.useDefaultSmile(keyword); 
+			self.useDefaultSmile(keyword);
 
 		}, false);
 		wrapper.html(table);
@@ -420,7 +420,7 @@ Gallery.prototype.showGalleryOnline = function(wrapper, loading){
 					console.log('已移除', keyword, url);
 				});
 			}else{
-				//self.useDefaultSmile(keyword); 
+				//self.useDefaultSmile(keyword);
 				self.operateEmoticonClick(emoticon, emoWrapper);
 			}
 
@@ -449,7 +449,7 @@ Gallery.prototype.showGalleryFavorite = function(wrapper, loading){
 			emoWrapper.animate({opacity: 0.1}, 500);
 			td.unbind('click');
 		}else{
-			self.operateEmoticonClick(emoticon, emoWrapper); 
+			self.operateEmoticonClick(emoticon, emoWrapper);
 		}
 	}, __('%s + Shift + 點選清除 (不會影響圖庫)').replace('%s', (isMac? "⌘" : "Ctrl")));
 	wrapper.html(table);
@@ -476,7 +476,7 @@ Gallery.prototype.showGallerySeen = function(wrapper, loading){
 				emo.keyword = emo.keyword + '_' + emo.hash_id.substr(emo.hash_id.length-5, 5).toUpperCase();
 			}
 			return emo;
-		});		
+		});
 
 		var table = self.generateGalleryTable(emoticons, function(event, emoticon){
 
@@ -500,7 +500,7 @@ Gallery.prototype.showGallerySeen = function(wrapper, loading){
 					});
 				}
 			}else{
-				self.operateEmoticonClick(emoticon, emoWrapper); 
+				self.operateEmoticonClick(emoticon, emoWrapper);
 			}
 		}, __('%s + Shift + 點選清除 / Shift + 點選加到圖庫').replace('%s', (isMac? "⌘" : "Ctrl")));
 		wrapper.html(table);
@@ -518,7 +518,7 @@ Gallery.prototype.showGalleryTab = function(wrapper, loading){
 
 		var json = JSON.stringify(emotions);
 		var notModified = self._galleryTabJson && (self._galleryTabJson == json);
-		
+
 		self._galleryTabJson = json;
 
 		if( notModified ){
@@ -527,7 +527,7 @@ Gallery.prototype.showGalleryTab = function(wrapper, loading){
 			wrapper.table.focusFilter();
 			return false;
 		}else{
-			
+
 			loading.show();
 			wrapper.empty();
 			var table = self.generateGalleryTable(emotions, function(event, emoticon){
@@ -536,7 +536,7 @@ Gallery.prototype.showGalleryTab = function(wrapper, loading){
 				var emoWrapper = $(event.currentTarget).find('a');
 				var keyword = emoticon.keyword;
 				var url 	= emoticon.url;
-				
+
 				if(event.shiftKey){ //ShiftKey rename
 					var newKeyword = prompt(__("重新命名 %s").replace('%s', keyword) + " : ",  keyword );
 					if(newKeyword && newKeyword != "" && newKeyword != keyword) {
@@ -560,11 +560,11 @@ Gallery.prototype.showGalleryTab = function(wrapper, loading){
 					}
 				}else{
 					EmoticonsStorage.addFavorite(emoticon);
-					self.operateEmoticonClick(emoticon, emoWrapper); 
-					return false; 
+					self.operateEmoticonClick(emoticon, emoWrapper);
+					return false;
 				}
 			});
-			
+
 			wrapper.table = table;
 			wrapper.show().html(table);
 			table.focusFilter();
@@ -630,7 +630,17 @@ Gallery.prototype.showToolsTab = function(wrapper, loading){
 						self.syncFavorites();
 					}
 				}),
-				$('<div>', { class: 'item pack', 
+				$('<div>', { class: 'item backup',
+					attr: { title: __('雲端備份到噗浪') },
+					click: function(){
+						if(GalleryBackup && GalleryBackup.cloudBackup){
+							GalleryBackup.cloudBackup();
+						}else{
+							alert(__('找不到套件'));
+						}
+					}
+				}),
+				$('<div>', { class: 'item pack',
 					attr: { title: __('打包下載所有表情圖案') },
 					click: function(){
 						if(downloadEmoticons){
@@ -640,7 +650,7 @@ Gallery.prototype.showToolsTab = function(wrapper, loading){
 						}
 					}
 				}),
-				$('<div>', { class: 'item none' }),
+				// $('<div>', { class: 'item none' }),
 				$('<div>', { class: 'item none' }),
 				$('<div>', { class: 'item github',
 					attr: { title: __('Github: 問題回報') },
@@ -695,7 +705,7 @@ Gallery.prototype.showSettingTab = function(wrapper, loading){
 
 	_.each(this.plugins, function(plugin, id){
 
-		$('<div/>', { class: 'item row', 
+		$('<div/>', { class: 'item row',
 			html : [plugin.title, newSwitch(plugin.enabled, plugin, id)]
 		}).appendTo(controls);
 
@@ -707,10 +717,10 @@ Gallery.prototype.showBackupTab = function(wrapper, loading){
 	var self = this;
 	wrapper.empty();
 
-	
+
 
 	self.storage.loadEmotions(function(emotions){
-		
+
 		var json = JSON.stringify(emotions);
 		var b64 = utf8_to_b64( json );
 		var blob = createTextBlob(json);
@@ -726,7 +736,7 @@ Gallery.prototype.showBackupTab = function(wrapper, loading){
 			setTimeout(function(){
 	        	URL.revokeObjectURL(url);
 	        }, 60*1000)
-		};		
+		};
 
 		var exportFile = $('<a/>', { class: 'icon_export',
 			text: __("%d 張圖片").replace('%d', emotions.length),
@@ -771,23 +781,23 @@ Gallery.prototype.showBackupTab = function(wrapper, loading){
 		}).appendTo(wrapper);
 
 		loading.fadeOut();
-		
-		
+
+
 		function handleFileSelect(evt) {
-			
+
 		    evt.stopPropagation();
 		    evt.preventDefault();
 
-		    var files = evt.dataTransfer.files || evt.target.files; 
-		    
+		    var files = evt.dataTransfer.files || evt.target.files;
+
 		    for (var i = 0, f; f = files[i]; i++) {
-		    	
+
 				var reader = new FileReader();
 				reader.onload = (function(theFile) {
 					return function(e) {
 						var data = e.target.result;
 						var emotions = {};
-						if(data.indexOf('[InternetShortcut]') == 0){ 
+						if(data.indexOf('[InternetShortcut]') == 0){
 							try{
 								b64 = data.replace(/[\n\r]*/ig, '').replace('[InternetShortcut]', '').replace('URL=data:text/plain;charset=utf-8; base64,', '');
 								emotions = JSON.parse(b64_to_utf8(b64));
@@ -805,14 +815,14 @@ Gallery.prototype.showBackupTab = function(wrapper, loading){
 								return false;
 							}
 						}
-						
+
 						for(var i=0, e ; e = emotions[i]; i++ ){
 							if((e.url && e.keyword && e.hash_id) == false) {
 								alert("這不是有效的圖庫備份檔案！")
 								return false;
 							}
 						}
-						
+
 						if(method.val() == 'replace'){
 							var con = confirm("警告！你確定要取代目前的圖庫嗎？ (已載入" + emotions.length  + "張圖片)")
 							if(con) self.storage.replaceEmotions(emotions, function(emotions){
@@ -841,7 +851,7 @@ Gallery.prototype.showBackupTab = function(wrapper, loading){
 				reader.readAsText(f)
 		    }
 		  }
-		  
+
 		function handleDragEnd(evt) {
 		}
 
@@ -866,13 +876,13 @@ Gallery.prototype.deprecateDefaultTab = function(){
 				$(this).parents('#emoticons_my_holder').find('.protected').addClass('forced').show();
 				return false;
 			 }).end();
-			
+
 			if($(".emoticons_my #emoticons_my_holder table:not(.protected)").length == 0) {
 				return;
 			}else{
 				clearInterval(t);
 			}
-			
+
 			$(".emoticons_my #emoticons_my_holder")
 			.find('table').addClass('protected').hide().end()
 			.append(
@@ -890,7 +900,7 @@ Gallery.prototype.deprecateDefaultTab = function(){
 				return false;
 			 }).end();
 		}, 200);
-	})	
+	})
 }
 Gallery.prototype.showPanel = function(panel){
 }
@@ -898,14 +908,14 @@ Gallery.prototype.generateGalleryTab = function(){
 
 	var self = this;
 	if(this.galleryTab) return;
-	
+
 	self.deprecateDefaultTab();
 
-	var doc = document; 
+	var doc = document;
 	createStyle(doc, ".emoticon_selecter.delete.current{ background:red !important; }	.emoticon_selecter.delete.current a{ color:white !important;}");
 	createStyle(doc, ".emoticon_selecter.rename.current{ background:green !important; }	.emoticon_selecter.rename.current a{ color:white !important;}");
 	createStyle(doc, ".emoticon_selecter.backup.current{ background:#CF5A00 !important; }	.emoticon_selecter.backup.current a{ color:white !important;}");
-	
+
 	//add tab
 	function switchTab(e){
 		$(this).siblings().removeClass("current");
@@ -923,17 +933,17 @@ Gallery.prototype.generateGalleryTab = function(){
 		$('.tableWrapper').scrollTop(0);
 		self.lazyLoaders[self.currentClassName] && self.lazyLoaders[self.currentClassName].start();
 	}).insertAfter("#emoticons_tabs #emo_emotiland_button");
-		
+
 
 	this.registerTab('gallery default', this.showGalleryDefault, __('基本'));
 	this.registerTab('gallery online', this.showGalleryOnline, __('線上'));
 	this.registerTab('gallery local', this.showGalleryTab, __('圖庫'));
 
-	
+
 	this.registerTab('gallery favorite', this.showGalleryFavorite, __('最常用的'));
 	this.registerTab('gallery seen', this.showGallerySeen, __('蒐集者之眼'));
 	this.registerTab('backup', this.showBackupTab, __('備份'));
-	
+
 	this.registerTab('setting', this.showSettingTab, __('設定'));
 	this.registerTab('tools', this.showToolsTab, __('工具'));
 
@@ -942,7 +952,7 @@ Gallery.prototype.generateGalleryTab = function(){
 	// $("#popViewContent").draggable({attachTo: "#emoticons_tabs", ignore: "a, li", "cursor": "move" })
 	// createStyle(doc, "#emoticon_selecter.ondrag {opacity: 0.5;}");
 	// createStyle(doc, "#emoticon_selecter {-webkit-box-shadow: rgba(0, 0, 0, 0.8) 2px 2px 5px 0px;-webkit-transition: opacity 0.2s linear;}");
-	//createStyle(doc, "#emoticon_selecter #emoticons_tabs {cursor: move ;}");	
+	//createStyle(doc, "#emoticon_selecter #emoticons_tabs {cursor: move ;}");
 }
 Gallery.prototype.createGalleryFilter = function(table, callback){
 
@@ -956,41 +966,41 @@ Gallery.prototype.createGalleryFilter = function(table, callback){
 			val = val.replace(/^[\s　]+/, '').replace(/[\s　]+$/, '');
 
 			clearInterval(delayTimer);
-			
+
 			self.galleryFilterValue = val;
-			
+
 			var tds = $(table).find("td");
 
 			//show all if empty
 			if(val.length == 0) {
-				//restore 
+				//restore
 				tds.css({'max-width': '80px', 'max-height': '80px', 'opacity' : '1', 'display': ''});
 				setTimeout(function(){
 					callback && callback();
 				}, 300);
 				return false;
 			}
-			
+
 			var matched = tds.filter(function(){
 				var alt = $(this).find('a').attr('alt').toLowerCase();
 				return (alt.indexOf(val.toLowerCase()) != -1);
 			});
-			
-			
+
+
 			if(matched.length == 0 && val.match(/[ㄦㄢㄞㄚㄧㄗㄓㄐㄍㄉㄅㄣㄟㄛㄨㄘㄔㄑㄎㄊㄆㄤㄠㄜㄩㄙㄕㄒㄏㄋㄇㄥㄡㄝㄖㄌㄈ]$/)){
 				return false;
 			}
-	
+
 			delayTimer = setTimeout(function(){
 				//show matched
 				matched.addClass('matched').css({'max-width': '80px', 'max-height': '80px', 'opacity' : '1', 'display': ''});
-				
+
 				//hide others
 				var animated = tds.not(matched).filter(':visible').filter(':lt(25)').css({'max-width': '0', 'max-height': '0', 'opacity' : '0', 'display': ''})
 				tds.not(matched).not(animated).attr('style', 'display:none !important;')
 				//don't know why this not work
 				//tds.not(matched).not(animated).css('display', 'none');
-				
+
 				//make first 25 hidden element animated next time
 				tds.not(matched).not(":visible").filter(':lt(25)').css({'opacity' : '1', 'display': '', 'max-width': '0', 'max-height': '0'});
 				setTimeout(function(){
@@ -1034,10 +1044,10 @@ Gallery.prototype.generateGalleryTable = function(emoticons, clickHandler, heade
 			line++;
 			row = $("<tr/>", {
 				attr: {
-					'data-line': line, 
+					'data-line': line,
 					'data-number': ((i+1) + '-' + (i+8))
 				}
-			}).appendTo(table);		
+			}).appendTo(table);
 		}
 		var td = $('<td/>', {
 			click : function(event){
@@ -1074,9 +1084,9 @@ Gallery.prototype.generateGalleryTable = function(emoticons, clickHandler, heade
 				css: { color:'#999', margin:'5px 0' },
 				text: __('※請勿自行刪除重新安裝以免圖庫遺失，如需更新請重新啟動瀏覽器')
 			})
-		] 
+		]
 	});
-	
+
 	tableWrapper.get(0).addEventListener('scroll',function(){
 		wrapper.tableScrollTop = this.scrollTop;
 	});
@@ -1135,7 +1145,7 @@ function AdvancedGalleryPlugin(gallery){
 	this.gallery = gallery
 	this.title =  __('進階版圖庫');
 	this.parent();
-	
+
 
 }
 AdvancedGalleryPlugin.prototype =  Object.create(Plugin.prototype);

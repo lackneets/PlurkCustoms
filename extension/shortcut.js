@@ -17,22 +17,22 @@ function shortcut(gallery){
 					}),
 
 					$('<a>', {
-						class: 'shortcut setting',
-						attr: {title: __('外掛設定')},
-						click: function(e){
-							gallery.open('setting', findCurrentInput(e.target));
-							return false;
-						}
-					}),
-
-					$('<a>', {
 						class: 'shortcut gallery',
 						attr: {title: __('開啟圖庫')},
 						click: function(e){
 							gallery.open('gallery local', findCurrentInput(e.target));
 							return false;
 						}
-					})
+					}),
+
+					$('<a>', {
+						class: 'shortcut tools',
+						attr: {title: __('外掛設定')},
+						click: function(e){
+							gallery.open('tools', findCurrentInput(e.target));
+							return false;
+						}
+					}),
 
 				]
 			}).appendTo(container)

@@ -17,3 +17,6 @@
 .icon-pc-copy:before { content: '\e80f'; } /* '' */
 .icon-pc-github:before { content: '\e810'; } /* '' */
 .icon-pc-clock:before { content: '\e811'; } /* '' */
+.icon-pc-backup:before { content: '\e812'; } /* '' */
+.icon-pc-pack:before { content: '\e813'; } /* '' */
+.icon-pc-disk:before { content: '\e814'; } /* '' */

@@ -131,6 +131,24 @@
       "src": "mfglabs"
     },
     {
+      "uid": "5d595124cecf472869d1cdc020da0ccc",
+      "css": "backup",
+      "code": 59410,
+      "src": "entypo"
+    },
+    {
+      "uid": "9a76bc135eac17d2c8b8ad4a5774fc87",
+      "css": "pack",
+      "code": 59411,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "7a2707491ef57c1e98921df65b572a66",
+      "css": "disk",
+      "code": 59412,
+      "src": "elusive"
+    },
+    {
       "uid": "7ceff2e95ace2ce26f3396352ff92b6c",
       "css": "pixiv",
       "code": 59394,

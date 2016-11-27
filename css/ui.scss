@@ -72,6 +72,10 @@ margin-right: 8px;
 		color: #4682B4;
 		@include pc-icon("\E80C", 19px);
 	}
+	.tools{
+		color: #555;
+		@include pc-icon("\E80D", 19px);
+	}
 }
 
 #main_poster .plurkcustoms_shortcut a{
@@ -117,11 +121,11 @@ margin-right: 8px;
 			@include pc-icon("\E80D", 19px);
 		}
 		&.backup a{
-			color: #FF6633;
-			@include pc-icon("\E809", 19px);
+			color: #555;
+			@include pc-icon("\E814", 19px);
 		}
 		&.setting a{
-			color: #4682B4;
+			color: #555;
 			@include pc-icon("\E80C", 19px);
 		}
 		a{
@@ -200,8 +204,8 @@ margin-right: 8px;
 						@include pc-icon("\E800", 60px);
 					}
 					&.pack{
-						color: #FF6633;
-						@include pc-icon("\E809", 60px);
+						color: #8db241;
+						@include pc-icon("\E813", 60px);
 					}
 					&.sync{
 						color: #2E8B57;
@@ -211,6 +215,10 @@ margin-right: 8px;
 					&.update{
 						color: #008080;
 						@include pc-icon("\E804", 60px);
+					}
+					&.backup{
+						color: #4db0d8;
+						@include pc-icon("\E812", 60px);
 					}
 					&.github{
 						color: #555;
@@ -261,13 +269,13 @@ margin-right: 8px;
 		position:absolute;
 		top:40px;right:0px;left:0px;bottom:0px;
 		div.help{
-			padding:0 8px; 
+			padding:0 8px;
 			color:#ccc;
 		}
 		a {
 			position:relative;
 			img{
-				max-width: 50px; 
+				max-width: 50px;
 				max-height: 50px;
 			}
 		}
@@ -298,7 +306,7 @@ margin-right: 8px;
 	display: block;
 	background-color: #CCFFFF;
 	border-radius: 5px;
-	padding: 5px; 
+	padding: 5px;
 	.action{
 		display: inline-block;
 		height: 18px;
@@ -341,13 +349,13 @@ margin-right: 8px;
 		text-indent: -99999em;
 		overflow: hidden;
 		background-position: center;
-		background-image: url(chrome-extension://__MSG_@@extension_id__/images/loading-suqare.gif); 
+		background-image: url(chrome-extension://__MSG_@@extension_id__/images/loading-suqare.gif);
 		background-repeat: no-repeat;
 		*{
 			opacity: 0;
 			position: relative;
 			top:-4000px;
-		} 
+		}
 	}
 }
 
@@ -381,7 +389,7 @@ html.jailbreaker-agent{
 		background-color: rgba(255,255,255,.8);
 		float: left;
 		-webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
-						animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out; 
+						animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
 	}
 	.sk-cube-grid .sk-cube1 {
 		-webkit-animation-delay: 0.2s;
@@ -417,7 +425,7 @@ html.jailbreaker-agent{
 							transform: scale3D(1, 1, 1);
 		} 35% {
 			-webkit-transform: scale3D(0, 0, 1);
-							transform: scale3D(0, 0, 1); 
+							transform: scale3D(0, 0, 1);
 		}
 	}
 
@@ -428,6 +436,6 @@ html.jailbreaker-agent{
 		} 35% {
 			-webkit-transform: scale3D(0, 0, 1);
 							transform: scale3D(0, 0, 1);
-		} 
+		}
 	}
 }
