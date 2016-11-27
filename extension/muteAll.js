@@ -155,7 +155,22 @@ class MuteAllButton{
       success: dataJSON => {
 
         var data = eval('(' + dataJSON + ')');
-        for(var i=0; i < data.unread_plurks.length; i++) if(data.unread_plurks[i].owner_id == this.settings.user_id || data.unread_plurks[i].plurk_type > 1) { data.unread_plurks.splice(i,1); i--; }
+
+        data.unread_plurks = data.unread_plurks.filter(p => {
+          if(p.owner_id == this.settings.user_id){ // 不消音自己的
+            return false;
+          }
+          if(p.responded){ // 不消音回覆過的
+            return false;
+          }
+          if(p.owner_id == 99999){ // 匿名的要消音
+            return true;
+          }
+          if(p.plurk_type > 1){ // 不消音私噗
+            return false;
+          }
+          return true; // 其餘都消音
+        });
 
         var total = data.unread_plurks.length;
 
