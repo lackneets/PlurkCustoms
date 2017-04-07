@@ -1,17 +1,37 @@
 $(".plurk img[src*='emos.plurk.com']:not([keyword])").livequery(function(){
-	var id = $(this).parents('[data-pid], [data-rid]').attr('id');
-	var plurk = $(this).parents('.plurk');
-	var pid = plurk.attr('data-pid');
-	var rid = plurk.attr('data-rid');
+	var $plurk = $(this).parents('.plurk');
+	var pid = $plurk.attr('data-pid');
+	var rid = $plurk.attr('data-rid');
 
-	id = (id || (rid && 'm'+rid) || (pid && 'p'+pid));
-	
+	var plurk = PlurksManager.getPlurkById(pid)
+
 	$(this).attr('keyword', '');
-	if(typeof $plurks[id] == 'undefined') return;
-	$.each(findKeywords($plurks[id].obj), function(hash, keyword){
-		plurk.find("img[src*="+hash+"]").attr('keyword', keyword);
-	});	
+
+	if(typeof plurk == 'undefined') return;
+
+	$.each(findKeywords(plurk), function(hash, keyword){
+		$plurk.find("img[src*="+hash+"]").attr('keyword', keyword);
+	});
+});
+
+$(function(){
+	if(typeof BroadcastStation == 'object'){
+		BroadcastStation.listen('plurk', 'reading', event => {
+			$.post('/Responses/get2', {
+				plurk_id: event.plurk_id,
+				from_response: 0
+			}).success(json => {
+				json.responses.forEach(response => {
+					$.each(findKeywords(response), function(hash, keyword){
+						console.log(response, keyword, hash)
+						$(`.plurk[data-rid=${response.id}] img[src*="${hash}"]`).attr('keyword', keyword);
+					});
+				})
+			});
+		})
+	}
 })
+
 
 function findKeywords(plurkData){
 	var RegExBrackets = /(\[[^\]]+\])/g ;
@@ -32,6 +52,6 @@ function findKeywords(plurkData){
 		var hash = emos[i].match(RegExEmosHash)[0];
 		arr[hash] = "emos" && brackets[i] && brackets[i].replace(/^\[/, '').replace(/\]$/, '');
 	}
-	
+
 	return arr;
 }
