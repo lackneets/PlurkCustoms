@@ -10,7 +10,8 @@ class GalleryBackup{
   }
 
   constructor(){
-    $('.plurk[id^=p] .text_holder:has(a[href*="paste.plurk.com"]:contains("PlurkCustomsBackup"))').livequery(function(e){
+    // FIXME: laggy
+    $('.text_holder:has(a[href*="paste.plurk.com"]:contains("PlurkCustomsBackup"))').livequery(function(e){
       var url = $(this).find('a[href*="paste.plurk.com"]').attr('href');
       var backup = $('<div/>', { class: 'backup',
         html: ['<b>圖庫備份還原點</b><br>',
