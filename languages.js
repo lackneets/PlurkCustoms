@@ -6,6 +6,7 @@ var __languages = {
 		"我 %d"		: "%d My",
 		"回 %d"		: "%d Responded ",
 		"私 %d"		: "%d Private",
+		"提 %d"   : "%d Mentioned",
 		"全部 %d"	: "%d Total",
 		"點選以蒐集這張圖片" : "Click this emoticon to collect",
 		"瀏覽以前的噗"	: "Browse plurks before specified date",
