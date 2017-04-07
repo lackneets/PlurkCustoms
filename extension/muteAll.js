@@ -105,8 +105,8 @@ class MuteAllButton{
               xhr.addEventListener('readystatechange', () => {
                 if (xhr.readyState >= 2) {
                   xhr.abort();
-                  localScript('if(Plurk.getById(' + id + ')) Poll.setPlurkRead("' + id + '", Plurk.getById(' + id + ').response_count)');
-                  localScript('if(Plurk.getById(' + id + ')) Plurk.getById(' + id + ').is_unread=2;');
+                  localScript('if(PlurksManager.getPlurkById(' + id + ')) Poll.newResponsesPoll.markPlurkRead("' + id + '", PlurksManager.getPlurkById(' + id + ').response_count)');
+                  localScript('if(PlurksManager.getPlurkById(' + id + ')) PlurksManager.getPlurkById(' + id + ').is_unread=2;');
                   localScript('Signals.sendSignal("plurk_muted","' + id + '")');
                   $("#p" + id).addClass('muted').removeClass('new').find('.manager .mute').addClass('unmute').html('Muted');
 
@@ -152,9 +152,7 @@ class MuteAllButton{
       url: "//www.plurk.com/Users/getUnreadPlurks",
       data: { known_friends: JSON.stringify([this.settings.user_id]) },
       type: "POST", cache: false,
-      success: dataJSON => {
-
-        var data = eval('(' + dataJSON + ')');
+      success: data => {
 
         data.unread_plurks = data.unread_plurks.filter(p => {
           if(p.owner_id == this.settings.user_id){ // 不消音自己的
@@ -167,6 +165,9 @@ class MuteAllButton{
             return true;
           }
           if(p.plurk_type > 1){ // 不消音私噗
+            return false;
+          }
+          if(p.mentioned){ // 被提及的不消音
             return false;
           }
           return true; // 其餘都消音
