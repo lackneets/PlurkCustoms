@@ -46,13 +46,13 @@ loadStyle('lib/nprogress.css');
 loadStyle('lib/dropzone.css');
 
 //時光機
-$.wait("#filter_tab span:contains((0))", function(element){
-	$(this).html('')
-}, true);
+// $.wait("#filter_tab span:contains((0))", function(element){
+// 	$(this).html('')
+// }, true);
 
-$.wait("#filter_tab", function(element){
-	loadScript('js/timeMachine.js');
-	$("<a href='#' title='" + __('瀏覽以前的噗') + "' class='off_tab timeMachine' rel='timeMachine'>"+ __('時光機') +"</a>").click(function(){
-		localScript('PlurkCustoms.timeTravel();');
-	}).prependTo(this).wrap('<li/>');
-});
+// $.wait("#filter_tab", function(element){
+// 	loadScript('js/timeMachine.js');
+// 	$("<a href='#' title='" + __('瀏覽以前的噗') + "' class='off_tab timeMachine' rel='timeMachine'>"+ __('時光機') +"</a>").click(function(){
+// 		localScript('PlurkCustoms.timeTravel();');
+// 	}).prependTo(this).wrap('<li/>');
+// });
