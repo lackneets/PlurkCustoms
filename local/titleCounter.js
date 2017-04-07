@@ -64,8 +64,6 @@ TitleCounterPlugin.prototype.timer = null;
 TitleCounterPlugin.prototype.origin = null;
 TitleCounterPlugin.prototype.start = function(){
 
-  var count_my;
-  var count_responded;
 
   var title           = document.getElementById('page_title').innerText || document.title || 'Plurk';
   var titleDetail     = document.getElementById('page_title').innerText || document.title || 'Plurk';
@@ -76,20 +74,26 @@ TitleCounterPlugin.prototype.start = function(){
 
   this.timer = setInterval(function(){
     if(typeof Poll == 'undefined') return;
-    Poll.counts = Poll.getUnreadCounts();
+    // Poll.counts = Poll.getUnreadCounts();
 
-    count_my = Poll.counts.my;
-    count_responded = Poll.counts.responded;
+    var unreads = Object.values(Poll.newResponsesPoll.getUnreadPlurks());
+    var counts  = {
+      all: unreads.length,
+      own: unreads.filter(p => p.own).length,
+      responded: unreads.filter(p => p.responded).length,
+      private: unreads.filter(p => p.limited).length,
+      mentioned: unreads.filter(p => p.mentioned).length,
+    }
 
     var detail = '';
-    var totalCount = Object.values(Poll.counts).reduce((a, b) => a + b);
 
-    faviconCounter.setCount(totalCount);
+    faviconCounter.setCount(counts.all);
 
-    detail += (Poll.counts.my > 0)        ? __('我 %d').replace('%d', Poll.counts.my) + ' '        : '';
-    detail += (Poll.counts.responded > 0) ? __('回 %d').replace('%d', Poll.counts.responded) + ' ' : '';
-    detail += (Poll.counts.priv > 0)      ? __('私 %d').replace('%d', Poll.counts.priv) + ' '      : '';
-    detail += (Poll.counts.all > 0)       ? __('未 %d').replace('%d', Poll.counts.all) + ' '     : '';
+    detail += (counts.own > 0)        ? __('我 %d').replace('%d', counts.own) + ' '        : '';
+    detail += (counts.mentioned > 0)  ? __('提 %d').replace('%d', counts.mentioned) + ' '        : '';
+    detail += (counts.responded > 0)  ? __('回 %d').replace('%d', counts.responded) + ' ' : '';
+    detail += (counts.private > 0)    ? __('私 %d').replace('%d', counts.private) + ' '      : '';
+    detail += (counts.all > 0)        ? __('未 %d').replace('%d', counts.all) + ' '     : '';
 
     detail = detail.replace(/^\s+/, '').replace(/\s+$/, '');
 

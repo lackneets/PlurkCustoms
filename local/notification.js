@@ -13,7 +13,7 @@ function NotificationSoundPlugin(){
 		}
 	}).prependTo("#filter_tab");
 }
-NotificationSoundPlugin.prototype = Object.create(Plugin.prototype); 
+NotificationSoundPlugin.prototype = Object.create(Plugin.prototype);
 NotificationSoundPlugin.prototype.parent = Plugin;
 NotificationSoundPlugin.prototype.constructor = NotificationSoundPlugin;
 
@@ -25,27 +25,36 @@ NotificationSoundPlugin.prototype.shortcutSwitch = null;
 NotificationSoundPlugin.prototype.start = function(){
 
 	var self = this;
-	var my;
-	var responded;
+	var unreads = Object.values(Poll.newResponsesPoll.getUnreadPlurks());
+	var counts  = {
+		all: unreads.length,
+		own: unreads.filter(p => p.own).length,
+		responded: unreads.filter(p => p.responded).length,
+		private: unreads.filter(p => p.limited).length,
+		mentioned: unreads.filter(p => p.mentioned).length,
+	}
 
 	this.shortcutSwitch.removeClass('on off').addClass( this.enabled ? 'on' : 'off');
 
 	clearInterval(this.timer);
 	this.timer = setInterval(function(){
-		if(typeof Poll == 'undefined') return;
-		Poll.counts = Poll.getUnreadCounts();
 
-		if( my == null && (Poll.counts.my + Poll.counts.responded) > 0 ){
-			self.alertSound();
-		} else if(my < Poll.counts.my || responded < Poll.counts.responded){
+		unreads = Object.values(Poll.newResponsesPoll.getUnreadPlurks());
+		let new_counts = {
+			all: unreads.length,
+			own: unreads.filter(p => p.own).length,
+			responded: unreads.filter(p => p.responded).length,
+			private: unreads.filter(p => p.limited).length,
+			mentioned: unreads.filter(p => p.mentioned).length,
+		}
+
+		if(new_counts.own > counts.own || new_counts.responded > counts.responded || new_counts.mentioned > counts.mentioned){
 			self.alertSound();
 		}
 
-		my 			= Poll.counts.my;
-		responded 	= Poll.counts.responded;
+		counts = new_counts;
 
-
-	}, 200);
+	}, 800);
 
 }
 NotificationSoundPlugin.prototype.stop = function(){
