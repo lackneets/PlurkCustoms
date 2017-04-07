@@ -16,7 +16,7 @@ function arrayClone(arr){
 //取得 manifest 的資料
 function manifest(name) {
 	var value;
-	
+
 	if(! manifest.data ) $.ajax({
 		url: chrome.extension.getURL('/manifest.json'),
 		dataType: 'json',
@@ -59,7 +59,7 @@ var GLOBAL;
 		if(window.frameElement && window.frameElement.nodeName == "IFRAME"){
 			if(window.location.toString().match('EmoticonManager')){
 				console.info('PlurkCustoms: 非河道模式運作');
-				return runFallbackMode();	
+				return runFallbackMode();
 			}else{
 				return false;
 			}
@@ -68,7 +68,7 @@ var GLOBAL;
 		if(! _GLOBAL ){
 			console.error('PlurkCustoms: 無法運作');
 			return false;
-		} 
+		}
 
 		GLOBAL = _GLOBAL;
 		sessionStorage.GLOBAL = JSON.stringify(GLOBAL);
@@ -84,13 +84,13 @@ var GLOBAL;
 			console.info('表符上限為', limit, '將縮減為', limit - 5, '以確保可以上傳新表符');
 			gallery.reduceOnlineEmoticons(limit - 5);
 		});
-		
+
 		//註冊外掛
 		gallery.registerPlugin(new CandidatePlugin(gallery), 'CandidatePlugin');
 		gallery.registerPlugin(new CollectorPlugin(gallery), 'CollectorPlugin');
 		gallery.registerPlugin(new AdvancedGalleryPlugin(gallery), 'AdvancedGalleryPlugin');
 
-		gallery.registerPlugin(new LocalPluginAdapter('PlurkBoxAdvancedPlugin', __('噗文時間列')), 'PlurkBoxAdvancedPlugin');
+		// gallery.registerPlugin(new LocalPluginAdapter('PlurkBoxAdvancedPlugin', __('噗文時間列')), 'PlurkBoxAdvancedPlugin');
 		gallery.registerPlugin(new LocalPluginAdapter('TitleCounterPlugin', __('標題計數器')), 'TitleCounterPlugin');
 		gallery.registerPlugin(new LocalPluginAdapter('NotificationSoundPlugin', __('通知音效')), 'NotificationSoundPlugin');
 		gallery.registerPlugin(new LocalPluginAdapter('AvatarZoomPlugin', __('頭像放大鏡')), 'AvatarZoomPlugin');
@@ -101,7 +101,7 @@ var GLOBAL;
 		packer(gallery);
 		shortcut(gallery);
 	});
-	
+
 	// 非河道模式運作
 	function runFallbackMode(){
 		try{
@@ -139,7 +139,7 @@ var GLOBAL;
 	});
 
 
-	
+
 	Function.prototype.clone = function() {
 	    var that = this;
 	    var temp = function temporary() { return that.apply(this, arguments); };
@@ -148,7 +148,7 @@ var GLOBAL;
 	    }
 	    return temp;
 	};
-	
+
 	function require(file, callback){
 		$.ajax({
 		  url: chrome.extension.getURL('/' + file),

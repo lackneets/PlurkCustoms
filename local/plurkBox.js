@@ -6,17 +6,16 @@ PlurkBoxAdvancedPlugin.prototype = Object.create(Plugin.prototype); /*Plugin.pro
 PlurkBoxAdvancedPlugin.prototype.parent = Plugin;
 
 PlurkBoxAdvancedPlugin.prototype.start = function(){
+	// TODO: .posted, .td_info 不存在了
 	var self = this;
 	$('.plurk[id^=p].display').livequery(function(e){
 		if(! self.enabled ) return;
 		var div = $(this);
-		var id = $(this).attr('id');
+		var id = $(this).data('pid');
 		var time = div.find('.posted');
-		var href = get_permalink(id.match(/\d+/));
+		var href = get_permalink(id);
 		var info = div.find('.td_info').show(); div.find('.tr_info').show();
-
-		// var replurkers = $plurks[id].obj.replurkers;
-		// var liker = $plurks[id].obj.favorers;
+		var plurk = PlurksManager.getPlurkById(id);
 
 		if(time.length == 0){
 			time = $('<a class="posted"><i class="icon-pc-clock"></i></a>');
@@ -27,11 +26,11 @@ PlurkBoxAdvancedPlugin.prototype.start = function(){
 			});
 			time.attr('href', href);
 			time.attr('target', '_blank');
-			time.append(countTime($plurks[id].obj.posted)).attr('title', dateString($plurks[id].obj.posted));
+			time.append(countTime(plurk.posted)).attr('title', dateString(plurk.posted));
 			time.appendTo(info);
 		}
 
-	});	
+	});
 }
 PlurkBoxAdvancedPlugin.prototype.stop = function(){
 	$('.plurk[id^=p] .td_info').hide();
@@ -56,7 +55,7 @@ function get_permalink($plurk_id)
 }
 
 
-function dateString(_d){ 
+function dateString(_d){
 	//function td(d){ return (new String(d).match(/^d{1}$/)) '0' + d : d; }
 	var y = _d.getFullYear();
 	var m = _d.getMonth() +1;
@@ -70,26 +69,26 @@ function dateString(_d){
 	return sprintf('%s %02d:%02d %d/%d/%d', a, h12, i, y, m, d);
 }
 function countTime($time){
-	$sec = (new Date().getTime() - ($time).getTime()) /1000; 
-				
+	$sec = (new Date().getTime() - ($time).getTime()) /1000;
+
 	if($sec < 60)
 		return __("剛剛");
-		
+
 	else if($sec < 60*60)
 		return sprintf(__("%s 分鐘前"), Math.round($sec /60));
-		
+
 	else if($sec < 86400)
 		return sprintf(__("%s 小時前"), Math.round($sec /(60*60)));
-		
+
 	else if($sec > 86400 && $sec < 86400*2)
 		return __("昨天");
-			
+
 	else if($sec > 86400 && $sec < 86400*7)
 		return sprintf(__("%s 天前"), Math.round($sec /(60*60*24)));
-		
+
 	else if($sec < 86400*30)
 		return sprintf(__("%s 星期前"), Math.round($sec /(60*60*24*7)));
-		
-	else 
+
+	else
 		return dateString($time);
 }
