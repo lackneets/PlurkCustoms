@@ -292,16 +292,16 @@ PlurkEmotiland.prototype.getDefaultSmiles = function(callback){
 
 PlurkEmotiland.prototype.isPremium = function(callback){
 	if(GLOBAL){
-		return callback && callback(GLOBAL.page_user.premium);
+		return callback && callback(GLOBAL.session_user.premium);
 	}
 	getLocal('GLOBAL', function(GLOBAL){
-		callback && callback(GLOBAL.page_user.premium);
+		callback && callback(GLOBAL.session_user.premium);
 	});	
 }
 
 PlurkEmotiland.prototype.getStorageLimit = function(callback){
 	this.isPremium(function(isPremium){
-		console.info('上限', isPremium ? 500 : 60)
-		callback && callback(isPremium ? 500 : 60);
+		console.info('上限', isPremium ? 800 : 60)
+		callback && callback(isPremium ? 800 : 60);
 	});
 }
